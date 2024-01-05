@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/05 16:18:40 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:03:52 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,24 @@ void	print_tokens(t_token *tokens)
 	}
 }
 
+void	print_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		printf("envp %d: %s\n", i, envp[i]);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_token	*tokens;
 
-	(void)envp;
+	print_envp(envp);
 	(void)argc;
 	(void)argv;
 	tokens = NULL;
