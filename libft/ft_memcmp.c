@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/05 14:20:54 by woorikim         ###   ########.fr       */
+/*   Created: 2023/03/18 17:11:24 by woorikim          #+#    #+#             */
+/*   Updated: 2023/03/18 19:23:26 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void print_tokens(t_token *tokens)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_token *tmp;
+	unsigned char	*c1;
+	unsigned char	*c2;
 
-	tmp = tokens;
-	while (tmp)
+	c1 = (unsigned char *)s1;
+	c2 = (unsigned char *)s2;
+	while (n--)
 	{
-		printf("str: %s, type: %d\n", tmp->str, tmp->type);
-		tmp = tmp->next;
-	}
-}
-
-int main(int argc, char **argv, char **envp)
-{
-	char *line;
-	t_token *tokens;
-	
-	(void)envp;
-	(void)argc;
-	(void)argv;
-	tokens = NULL;
-	while (42)
-	{
-		line = read_input();
-		split_tokens(&tokens, line);
-		free(line);
-		print_tokens(tokens);	
+		if (*c1 != *c2)
+			return (*c1 - *c2);
+		c1++;
+		c2++;
 	}
 	return (0);
 }
