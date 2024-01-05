@@ -31,6 +31,6 @@ jobs:
     - name: Check for Executable and Object Files
       run: |
         if find minishell -name "*.o" -or -name "minishell" | grep -q .; then
-      echo "Executable or object files found in minishell directory"
-      exit 1
-    fi
+          echo "Executable or object files found in minishell directory"
+          exit 1
+        fi
