@@ -6,15 +6,15 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:48:07 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/05 14:36:50 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:34:03 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token *new_token(char *str, int type)
+t_token	*new_token(char *str, int type)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = (t_token *)malloc(sizeof(t_token));
 	if (!token)
@@ -27,8 +27,8 @@ t_token *new_token(char *str, int type)
 
 int	add_token(t_token **token, char *str, int type)
 {
-	t_token *new;
-	t_token *tmp;
+	t_token	*new;
+	t_token	*tmp;
 
 	new = new_token(str, type);
 	if (!new)
@@ -45,11 +45,11 @@ int	add_token(t_token **token, char *str, int type)
 	return (SUCCESS);
 }
 
-int split_tokens(t_token **tokens, char *line) 
+int	split_tokens(t_token **tokens, char *line)
 {
 	char	**splited_str;
 	int		i;
-	
+
 	*tokens = NULL;
 	splited_str = ft_split(line, ';');
 	if (!splited_str)
@@ -57,9 +57,9 @@ int split_tokens(t_token **tokens, char *line)
 	i = 0;
 	while (splited_str[i])
 	{
-		if (add_token(tokens, splited_str[i], 0)  == FAIL)
+		if (add_token(tokens, splited_str[i], 0) == FAIL)
 			return (FAIL);
 		i++;
 	}
-    return (SUCCESS);
+	return (SUCCESS);
 }
