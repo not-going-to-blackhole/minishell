@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/07 17:46:17 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:56:37 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct s_token
 
 typedef struct s_envlst
 {
-	char		*key;
-	char		*value;
-	t_envlst	*next;
+	char		    *key;
+	char		    *value;
+	struct s_envlst	*next;
 }					t_envlst;
 
 // reading
@@ -46,5 +46,10 @@ char	*read_input(void);
 t_token	*new_token(char *str, int type);
 int		add_token(t_token **token, char *str, int type);
 int		split_tokens(t_token **tokens, char *line);
+
+// env_utils
+char	*strdup_from_to(char *str, int start, int end);
+int		get_key_value(char **key, char **value, char *env);
+t_envlst	*init_envlst(char **envp);
 
 #endif

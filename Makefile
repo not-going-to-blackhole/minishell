@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/05 16:06:32 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/07 19:50:40 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,16 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # woorikim's m1
-#LDFLAGS = -L /opt/homebrew/opt/readline/lib -lreadline
-#CPPFLAGS = -I /opt/homebrew/opt/readline/include
+LDFLAGS = -L /opt/homebrew/opt/readline/lib -lreadline
+CPPFLAGS = -I /opt/homebrew/opt/readline/include
 
 # cluster's MAC
-LDFLAGS = -L $(HOME)/.brew/opt/readline/lib -lreadline
-CPPFLAGS = -I $(HOME)/.brew/opt/readline/include
+# LDFLAGS = -L $(HOME)/.brew/opt/readline/lib -lreadline
+# CPPFLAGS = -I $(HOME)/.brew/opt/readline/include
 
 LIBRARY = libft/libft.a
 
-SRC = main.c reading.c token_utils.c
+SRC = main.c reading.c token_utils.c env_utils.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)

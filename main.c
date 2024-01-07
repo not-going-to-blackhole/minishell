@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/07 16:44:18 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:46:22 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,28 @@ void	print_tokens(t_token *tokens)
 	}
 }
 
-void	print_envp(char **envp)
+void	print_envplst(t_envlst *head)
 {
-	int	i;
+	t_envlst	*tmp;
 
-	i = 0;
-	while (envp[i])
+	tmp = head;
+	while (tmp)
 	{
-		printf("envp %d: %s\n", i, envp[i]);
-		i++;
+		printf("key: %s, value: %s\n", tmp->key, tmp->value);
+		tmp = tmp->next;
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*line;
-	t_token	*tokens;
+	char		*line;
+	t_token		*tokens;
+	t_envlst	*envlst;
 
-	//print_envp(envp);
+	envlst = init_envlst(envp);
+	if (!envlst)
+		return (FAIL);
+	print_envplst(envlst);
 	(void)envp;
 	(void)argc;
 	(void)argv;
