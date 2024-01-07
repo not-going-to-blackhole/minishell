@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/07 20:06:53 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:16:29 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_envlst	*init_envlst(char **envp)
 {
 	t_envlst	*head;
 	t_envlst	*tmp;
-	
+
 	head = NULL;
 	tmp = head;
 	while (*envp)
