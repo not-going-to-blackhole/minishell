@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/05 16:37:56 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:46:17 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_token
 	int				type;
 	struct s_token	*next;
 }					t_token;
+
+typedef struct s_envlst
+{
+	char		*key;
+	char		*value;
+	t_envlst	*next;
+}					t_envlst;
 
 // reading
 char	*read_input(void);
