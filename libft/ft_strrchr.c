@@ -1,44 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/05 14:20:54 by woorikim         ###   ########.fr       */
+/*   Created: 2023/03/17 19:33:15 by woorikim          #+#    #+#             */
+/*   Updated: 2023/03/22 14:31:19 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void print_tokens(t_token *tokens)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_token *tmp;
+	const char	*start_s;
 
-	tmp = tokens;
-	while (tmp)
+	start_s = s;
+	while (*s++)
+		;
+	while (--s >= start_s)
 	{
-		printf("str: %s, type: %d\n", tmp->str, tmp->type);
-		tmp = tmp->next;
-	}
-}
-
-int main(int argc, char **argv, char **envp)
-{
-	char *line;
-	t_token *tokens;
-	
-	(void)envp;
-	(void)argc;
-	(void)argv;
-	tokens = NULL;
-	while (42)
-	{
-		line = read_input();
-		split_tokens(&tokens, line);
-		free(line);
-		print_tokens(tokens);	
+		if (*s == (char)c)
+			return ((char *)s);
 	}
 	return (0);
 }
