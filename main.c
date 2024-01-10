@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/07 19:46:22 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:21:10 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ int	main(int argc, char **argv, char **envp)
 	t_token		*tokens;
 	t_envlst	*envlst;
 
-	envlst = init_envlst(envp);
-	if (!envlst)
-		return (FAIL);
+	envlst = NULL;
+	init_envlst(&envlst, envp);
 	print_envplst(envlst);
 	(void)envp;
 	(void)argc;

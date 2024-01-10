@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/07 20:16:09 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:21:50 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int			add_token(t_token **token, char *str, int type);
 int			split_tokens(t_token **tokens, char *line);
 
 // env_utils
-char		*strdup_from_to(char *str, int start, int end);
-int			get_key_value(char **key, char **value, char *env);
-t_envlst	*init_envlst(char **envp);
+t_envlst	*new_envlst(char *key, char *value);
+void		add_envlst(t_envlst **head, t_envlst *new);
+void		init_envlst(t_envlst **head, char *envp[]);
 
 #endif
