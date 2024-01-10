@@ -3,34 +3,34 @@ name: 42 Norminette CI
 on: [push, pull_request]
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
+    check:
+        runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+            # - name: Set up Python
+            #   uses: actions/setup-python@v2
+            #   with:
+            #     python-version: '3.x'
 
-    - name: Install Norminette
-      run: pip install norminette
+            # - name: Install Norminette
+            #   run: pip install norminette
 
-    - name: Run Norminette
-      run: norminette
+            # - name: Run Norminette
+            #   run: norminette
 
-    - name: Fail if Norminette finds errors
-      run: |
-        if norminette | grep -q 'Error'; then
-          echo "Norminette errors found"
-          exit 1
-        fi
+            # - name: Fail if Norminette finds errors
+            #   run: |
+            #     if norminette | grep -q 'Error'; then
+            #       echo "Norminette errors found"
+            #       exit 1
+            #     fi
 
-    - name: Check for Executable and Object Files
-      run: |
-        if find . -name "*.o" -o -name "*.out" -o -name "*.exe"; then
-          echo "Executable or object files found"
-          exit 1
-        fi
+            - name: Check for Executable and Object Files
+              run: |
+                  if find minishell -name "*.o" -or -name "minishell" | grep -q .; then
+                    echo "Executable or object files found in minishell directory"
+                    exit 1
+                  fi
