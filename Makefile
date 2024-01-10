@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/10 16:15:07 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/10 18:26:48 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,11 @@ LIBRARY = libft/libft.a
 
 SRC = main.c reading.c parsing/token_utils.c parsing/env_utils.c \
 		#srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  srcs/builtin/builtin_export.c
+
+TEST_SRC = tmp/parsing_test.c
+
 OBJ = $(SRC:.c=.o)
+#OBJ = $(SRC:.c=.o) $(TEST_SRC:.c=.o)
 
 all : $(NAME)
 
