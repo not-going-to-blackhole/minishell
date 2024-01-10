@@ -6,7 +6,7 @@
 /*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/08 14:10:27 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/10 13:35:38 by yeeun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,29 @@ typedef struct s_token
     struct s_token	*next;
 }					t_token;
 
-// 구조체 추가하기
+typedef struct s_env_node
+{
+	char				*key;
+	char				*val;
+	struct s_env_node	*next;
+}	t_env_node;
 typedef struct s_info
 {
 	int				stdin;
 	int				stdout;
 	int				syntax_error;
+	// struct termios	ms_termios;
+	t_env_node		*env_list;
+	char			**path_list;
+}	t_info;
+
+typedef struct s_info
+{
+	int				stdin;
+	int				stdout;
+	int				syntax_error;
+	// struct termios	ms_termios;
+	t_env_node		*env_list;
 	char			**path_list;
 }	t_info;
 
@@ -59,5 +76,7 @@ int	mini_echo(char **av);
 // builtin_cd.c
 int	mini_cd(t_info *info, char **av);
 
+// builtin_export.c
+int	mini_export(t_info *info, char **av);
 
 #endif

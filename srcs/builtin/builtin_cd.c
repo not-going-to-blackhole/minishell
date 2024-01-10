@@ -6,13 +6,11 @@
 /*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/08 14:10:51 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/10 12:26:07 by yeeun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// 함수 추가해야 함 -> mini_export
 
 static void	setting_pwd(t_info *info, char *key)
 {
