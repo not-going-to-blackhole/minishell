@@ -6,13 +6,13 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 15:21:41 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:26:08 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_envlst *new_envlst(char *key, char *value)
+t_envlst	*new_envlst(char *key, char *value)
 {
 	t_envlst	*new;
 
@@ -43,8 +43,8 @@ void	add_envlst(t_envlst **head, t_envlst *new)
 void	init_envlst(t_envlst **head, char *envp[])
 {
 	int		loc;
-	char 	*key;
-	char 	*value;
+	char	*key;
+	char	*value;
 
 	while (*envp)
 	{
