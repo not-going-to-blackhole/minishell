@@ -6,11 +6,11 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 15:21:10 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:47:11 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./includes/minishell.h"
 
 void	print_tokens(t_token *tokens)
 {

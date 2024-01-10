@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+         #
+#    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/10 13:40:43 by yeeun            ###   ########.fr        #
+#    Updated: 2024/01/10 16:15:07 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,14 @@ CPPFLAGS = -I /opt/homebrew/opt/readline/include
 
 LIBRARY = libft/libft.a
 
-<<<<<<< HEAD
-SRC = main.c reading.c token_utils.c builtin_echo.c builtin_pwd.c builtin_cd.c
-=======
-SRC = main.c reading.c token_utils.c env_utils.c
->>>>>>> main
+SRC = main.c reading.c parsing/token_utils.c parsing/env_utils.c \
+		#srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  srcs/builtin/builtin_export.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) LIBRARY
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBRARY) $(LDFLAGS) $(CFALG)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBRARY) $(LDFLAGS)
 	@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 LIBRARY :

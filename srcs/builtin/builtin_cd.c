@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/10 12:26:07 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:58:44 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	mini_cd(t_info *info, char **av)
 {
     char	*path;
 
-	set_pwd(info, "OLDPWD=");
+	setting_pwd(info, "OLDPWD=");
 	if (av[1] && (access(av[1], F_OK) || chdir(av[1])))
 	{
 		printf_error("cd", av[1]);
@@ -51,6 +51,6 @@ int	mini_cd(t_info *info, char **av)
 		chdir(path);
 		free(path);
 	}
-	set_pwd(info, "PWD=");
+	setting_pwd(info, "PWD=");
 	return (0);
 }
