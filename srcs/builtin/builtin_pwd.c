@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:14:41 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/08 13:59:23 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:56:31 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	dir_pwd(void)
 {
 	char	current_working_dir[1024];
 
-	if (getcwd(current_working_dir, 1024) == '\0')
+	if (getcwd(current_working_dir, 1024) == NULL)
 	{
 		printf_error("pwd", 0);
 		return (1);
