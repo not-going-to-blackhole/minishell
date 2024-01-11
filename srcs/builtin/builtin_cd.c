@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/10 15:58:44 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:05:48 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	mini_cd(t_info *info, char **av)
     char	*path;
 
 	setting_pwd(info, "OLDPWD=");
+	// chdir -> 현재 경로를 이동해주는 함수 (성공시 0, 실패시 -1 리턴)
 	if (av[1] && (access(av[1], F_OK) || chdir(av[1])))
 	{
 		printf_error("cd", av[1]);
@@ -40,6 +41,7 @@ int	mini_cd(t_info *info, char **av)
 	}
 	if (av[1] == NULL)
 	{
+		// get_env_value_and_free_env_key -> parsing 부분 함수인가?
 		path = get_env_value_and_free_env_key(info->env_list,
 				ft_strdup("HOME"));
 		if (path[0] == '\0')
