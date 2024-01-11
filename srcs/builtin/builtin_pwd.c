@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:14:41 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/10 15:56:31 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:53:21 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	dir_pwd(void)
+int	mini_pwd(void)
 {
 	char	current_working_dir[1024];
 

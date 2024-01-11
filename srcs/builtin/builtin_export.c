@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:49:10 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/10 12:31:46 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/11 13:51:05 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	changing_val(t_info *info, char *key, char *val)
+static int	if_key_exist_changing_val(t_info *info, char *key, char *val)
 {
 	t_env_node	*cur;
 
@@ -91,8 +91,8 @@ int	mini_export(t_info *info, char **av)
 {
 	int			idx;
 	int			flag_error;
-    t_env_node	*new;
-
+    t_envlst	*new;
+	
 	idx = 0;
 	flag_error = 0;
 	while (av[++idx])
@@ -102,16 +102,16 @@ int	mini_export(t_info *info, char **av)
 		new = create_env_node(av[idx]);
 		if (setting_error_flag(new, av[idx], &flag_error))
 			continue ;
-		else if (changing_val(info, new->key, new->val))
-			free_env_list(new);
+		else if (if_key_exist_changing_val(info, new->key, new->val))
+			// free_env_list(new);
 		else
 		{
 			if (ft_strncmp(new->key, "PATH", 4) == 0)
 				info->path_list = ft_split(new->val, ':');
-			add_env_node(&info->env_list, new);
+			// add_env_node(&info->env_list, new);
 		}
 	}
 	if (idx == 1)
-		print_env_list(info->env_list);
+		// print_env_list(info->env_list);
 	return (flag_error);
 }
