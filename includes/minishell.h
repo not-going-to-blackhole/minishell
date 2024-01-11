@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 11:02:40 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:33:29 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
-typedef struct s_env_node
+typedef struct s_envlst
 {
-	char				*key;
-	char				*val;
-	struct s_env_node	*next;
-}	t_env_node;
+	char			*key;
+	char			*value;
+	struct s_envlst	*next;
+}					t_envlst;
 
 typedef struct s_info
 {
@@ -46,16 +46,10 @@ typedef struct s_info
 	int				stdout;
 	int				syntax_error;
 	// struct termios	ms_termios;
-	t_env_node		*env_list;
+	t_envlst		*env_list;
 	char			**path_list;
 }	t_info;
 
-typedef struct s_envlst
-{
-	char			*key;
-	char			*value;
-	struct s_envlst	*next;
-}					t_envlst;
 
 // reading
 char		*read_input(void);
@@ -69,6 +63,7 @@ int			split_tokens(t_token **tokens, char *line);
 t_envlst	*new_envlst(char *key, char *value);
 void		add_envlst(t_envlst **head, t_envlst *new);
 void		init_envlst(t_envlst **head, char *envp[]);
+void		get_path_list(t_info **info);
 
 // builtin_pwd.c
 int			dir_pwd(void);
@@ -85,5 +80,11 @@ int			mini_export(t_info *info, char **av);
 // utils.c
 void		printf_error(char *str1, char *str2);
 void		free_all(char **arr);
+
+
+// // parsing test
+// void	print_tokens(t_token *tokens);
+// void	print_envplst(t_envlst *head);
+// void	print_path_list(char **list);
 
 #endif
