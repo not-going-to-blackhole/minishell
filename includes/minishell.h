@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 18:26:51 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:27:27 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <termios.h>
 
 # define SUCCESS 0
 # define FAIL 1
@@ -45,7 +46,7 @@ typedef struct s_info
 	int				stdin;
 	int				stdout;
 	int				syntax_error;
-	// struct termios	ms_termios;
+	struct termios	ms_termios;
 	t_envlst		*env_list;
 	char			**path_list;
 }	t_info;
@@ -64,6 +65,7 @@ t_envlst	*new_envlst(char *key, char *value);
 void		add_envlst(t_envlst **head, t_envlst *new);
 void		init_envlst(t_envlst **head, char *envp[]);
 void		get_path_list(t_info **info);
+char		*get_env_value(t_envlst *head, char *key);
 
 // builtin_pwd.c
 int	dir_pwd(void);
