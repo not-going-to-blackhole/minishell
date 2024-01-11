@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 14:34:15 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:26:24 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,39 @@
 # define SUCCESS 0
 # define FAIL 1
 
+typedef enum e_token_type
+{
+	WORD,
+	ARGV,
+	PIPE,
+	REDIR,
+	SAPCE
+}	t_token_type;
+
 typedef struct s_token
 {
 	char			*str;
-	int				type;
+	t_token_type	type;
 	struct s_token	*next;
 }					t_token;
+
+typedef struct s_redir
+{
+	char	*type;
+	char	*file;
+	struct s_redir	*next;
+}				t_redir;
+
+
+typedef struct s_cmd
+{
+	char			**av;
+	t_redir 		*redir;
+	struct s_cmd	*next;
+	struct s_cmd	*prev;
+	int				pipe[2];
+}					t_cmd;
+
 
 typedef struct s_envlst
 {
@@ -57,15 +84,18 @@ char		*read_input(void);
 
 // token_utils
 t_token		*new_token(char *str, int type);
-int			add_token(t_token **token, char *str, int type);
-int			split_tokens(t_token **tokens, char *line);
+void		add_token(t_token **token, char *str, int type);
+void		delete_token(t_token **head, t_token *target);
+void		free_tokens(t_token *head);
 
 // env_utils
 t_envlst	*new_envlst(char *key, char *value);
 void		add_envlst(t_envlst **head, t_envlst *new);
+t_envlst	*create_env_node(char *envp);
 void		init_envlst(t_envlst **head, char *envp[]);
 void		get_path_list(t_info **info);
-char		*get_env_value(t_envlst *head, char *key);
+char		*get_envval(t_envlst *head, char *key);
+void		free_envlst(t_envlst *head);
 
 // builtin_pwd.c
 int			dir_pwd(void);
@@ -79,10 +109,19 @@ int			mini_cd(t_info *info, char **av);
 // builtin_export.c
 int			mini_export(t_info *info, char **av);
 
+// builtin_unset.c
+int			mini_unset(t_info *info, char **av);
+
+
+
 // utils.c
 void		printf_error(char *str1, char *str2);
 void		free_all(char **arr);
 
+
+// parsing
+// lexical
+t_token	*do_lexical(t_info *info, char *line);
 
 // // parsing test
 // void	print_tokens(t_token *tokens);

@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:48:07 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 15:47:00 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 15:57:14 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ t_token	*new_token(char *str, int type)
 	return (token);
 }
 
-int	add_token(t_token **token, char *str, int type)
+void	add_token(t_token **token, char *str, int type)
 {
 	t_token	*new;
 	t_token	*tmp;
 
 	new = new_token(str, type);
 	if (!new)
-		return (FAIL);
+		return ;
 	if (!*token)
 		*token = new;
 	else
@@ -42,24 +42,46 @@ int	add_token(t_token **token, char *str, int type)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
-	return (SUCCESS);
 }
 
-int	split_tokens(t_token **tokens, char *line)
+
+void	delete_token(t_token **head, t_token *target)
 {
-	char	**splited_str;
-	int		i;
+	t_token *tmp;
 
-	*tokens = NULL;
-	splited_str = ft_split(line, ';');
-	if (!splited_str)
-		return (FAIL);
-	i = 0;
-	while (splited_str[i])
+	if (!*head)
+		return ;
+	if (*head == target)
 	{
-		if (add_token(tokens, splited_str[i], 0) == FAIL)
-			return (FAIL);
-		i++;
+		*head = (*head)->next;
+		free(target->str);
+		free(target);
+		return ;
 	}
-	return (SUCCESS);
+	tmp = *head;
+	while (tmp->next)
+	{
+		if (tmp->next == target)
+		{
+			tmp->next = tmp->next->next;
+			free(target->str);
+			free(target);
+			return ;
+		}
+		tmp = tmp->next;
+	}
 }
+
+void	free_tokens(t_token *head)
+{
+	t_token *tmp;
+
+	while(head)
+	{
+		tmp = head->next;
+		free(head->str);
+		free(head);
+		head = tmp;
+	}
+}
+

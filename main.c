@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 14:00:44 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:00:22 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,16 @@ static void	info_init(t_info *info, char **envp)
 	update_pwd(info);
 }
 
+static void	parse_line(t_info *info, char *line)
+{
+	t_token	*tokens;
+	//t_cmd	*cmds;
+	
+	info->syntax_error = 0;
+	tokens = do_lexical(info, line);
+	(void)tokens;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
@@ -58,21 +68,19 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	while (42)
 	{
+		//setting signal
 		line = read_input();
 		if (!line)
 		{
-			printf("no input \n");
+			//ms_exit(&info, NULL);
 			break ;
 		}
-		else if (line[0] == '\0')
+		else if (line[0] != '\0')
 		{
-			printf("input %s \n", line);
+			//printf("input %s \n", line);
+			parse_line(&info, line);
 		}
-		else {
-			printf("?? input %s \n", line);
-		}
-		free(line);
-		
+		free(line);	
 	}
 	return (0);
 }

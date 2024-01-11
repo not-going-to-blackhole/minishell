@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/11 14:28:21 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/11 17:30:45 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ CPPFLAGS = -I /opt/homebrew/opt/readline/include
 
 LIBRARY = libft/libft.a
 
-SRC = main.c reading.c parsing/token_utils.c parsing/env_utils.c \
-		#srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  srcs/builtin/builtin_export.c
-
+SRC = main.c reading.c parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c \
+		srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  \
+		srcs/builtin/builtin_export.c srcs/builtin/builtin_unset.c srcs/builtin/builtin_env.c \
+		srcs/builtin/utils.c \
+			
 TEST_SRC = tmp/parsing_test.c
 
 OBJ = $(SRC:.c=.o)
