@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 17:26:24 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:14:05 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum e_token_type
 	ARGV,
 	PIPE,
 	REDIR,
-	SAPCE
+	SPACING
 }	t_token_type;
 
 typedef struct s_token
@@ -122,6 +122,10 @@ void		free_all(char **arr);
 // parsing
 // lexical
 t_token	*do_lexical(t_info *info, char *line);
+
+// heredoc
+void		check_heredoc(t_info *info, t_token *tokens);
+
 
 // // parsing test
 // void	print_tokens(t_token *tokens);

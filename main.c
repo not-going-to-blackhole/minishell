@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 17:00:22 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:11:37 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	parse_line(t_info *info, char *line)
 	tokens = do_lexical(info, line);
 	(void)tokens;
 }
+
 
 int	main(int argc, char **argv, char **envp)
 {

@@ -1,51 +1,30 @@
 #include "../includes/minishell.h"
 
 
-int	get_insertion_loc(char *str)
-{
-	int	start;
-	int	skip;
+// void	print_tokens(t_token *tokens)
+// {
+// 	t_token	*tmp;
+// 	char *type;
 
-	start = 0;
-	while (str[start] && ft_strncmp(&str[start], "<<", 2))
-	{
-		skip = 1;
-		if (str[start] == '\'' || str[start] == '\"')
-		{
-			while (str[skip] && str[skip] != str[start])
-				skip++;
-			skip++;
-		}
-		start += skip;
-	}
-	return (start);
-}
-
-static void	parse_heredoc(t_info *info, t_token *token, char *str)
-{
-	int		loc;
-	//char	*new;
-	(void)info;
-	(void)token;
-
-	if (!str)
-		return ;
-	loc = get_insertion_loc(str);
-}
-
-
-static void	check_heredoc(t_info *info, t_token *tokens)
-{
-	t_token	*tmp;
-
-	tmp = tokens;
-	while (tmp)
-	{
-		if (tmp->type == WORD)
-			parse_heredoc(info, tmp, ft_strdup(tmp->str));
-		tmp = tmp->next;
-	}
-}
+// 	tmp = tokens;
+// 	while (tmp)
+// 	{
+// 		if (tmp->type == WORD)
+// 			type = "WORD";
+// 		else if (tmp->type == ARGV)
+// 			type = "ARGV";
+// 		else if (tmp->type == REDIR)
+// 			type = "REDIRECT";
+// 		else if (tmp->type == PIPE)
+// 			type = "PIPE";
+// 		else if (tmp->type == SPACING)
+// 			type = "SEMICOLON";
+// 		else
+// 			type = "UNKNOWN";
+// 		printf("str: %s\ntype: %s\n-------------\n", tmp->str, type);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 t_token	*do_lexical(t_info *info, char *line)
 {
@@ -53,5 +32,6 @@ t_token	*do_lexical(t_info *info, char *line)
 
 	tokens = new_token(line, WORD);
     check_heredoc(info, tokens);
+	// print_tokens(tokens);
 	return (tokens);
 }

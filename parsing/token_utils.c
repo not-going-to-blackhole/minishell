@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:48:07 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 15:57:14 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:55:13 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*new_token(char *str, int type)
 	token = (t_token *)malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	token->str = str;
+	token->str = ft_strdup(str);
 	token->type = type;
 	token->next = NULL;
 	return (token);
