@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 16:12:41 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:02:40 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ void		add_envlst(t_envlst **head, t_envlst *new);
 void		init_envlst(t_envlst **head, char *envp[]);
 
 // builtin_pwd.c
-int	dir_pwd(void);
+int			dir_pwd(void);
 
 // builtin_echo.c
-int	mini_echo(char **av);
+int			mini_echo(char **av);
 
 // builtin_cd.c
-int	mini_cd(t_info *info, char **av);
+int			mini_cd(t_info *info, char **av);
 
 // builtin_export.c
-int	mini_export(t_info *info, char **av);
+int			mini_export(t_info *info, char **av);
 
 // utils.c
-void	printf_error(char *str1, char *str2);
-void	free_all(char **arr);
+void		printf_error(char *str1, char *str2);
+void		free_all(char **arr);
 
 #endif

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:49:10 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/10 12:31:46 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/11 11:08:21 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	changing_val(t_info *info, char *key, char *val)
+static int	if_key_exist_changing_val(t_info *info, char *key, char *val)
 {
 	t_env_node	*cur;
 
@@ -102,7 +102,7 @@ int	mini_export(t_info *info, char **av)
 		new = create_env_node(av[idx]);
 		if (setting_error_flag(new, av[idx], &flag_error))
 			continue ;
-		else if (changing_val(info, new->key, new->val))
+		else if (if_key_exist_changing_val(info, new->key, new->val))
 			free_env_list(new);
 		else
 		{

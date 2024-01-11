@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeun <yeeun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:05:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/08 12:47:29 by yeeun            ###   ########.fr       */
+/*   Updated: 2024/01/11 11:01:18 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static void	echo_arguments(char **av, int idx)
 
 int	mini_echo(char **av)
 {
-    int	idx;
+	int	idx;
 	int	n_idx;
 	int	newline;
 
 	idx = 0;
-    newline = 1;
+	newline = 1;
 	if (av[1] && ft_strncmp(av[1], "-n", 2) == 0)
 	{
 		n_idx = 1;
