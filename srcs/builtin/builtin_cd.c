@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/11 14:05:48 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:58:39 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	mini_cd(t_info *info, char **av)
 	if (av[1] == NULL)
 	{
 		// get_env_value_and_free_env_key -> parsing 부분 함수인가?
-		path = get_env_value_and_free_env_key(info->env_list,
+		path = get_envval(info->env_list,
 				ft_strdup("HOME"));
 		if (path[0] == '\0')
 		{

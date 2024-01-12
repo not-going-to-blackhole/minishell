@@ -78,7 +78,7 @@ int	mini_exit(t_info *info, t_cmd *cmd_list)
 	}
 	else
 		ft_putendl_fd("exit", STDOUT_FILENO);
-	// free_env_list(info->env_list);
+	// free_envlst(info->env_list);
 	free_all(info->path_list);
 	exit(termination_status);
 	return (0);

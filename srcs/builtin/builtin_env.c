@@ -6,11 +6,11 @@ int	mini_env(t_envlst *envlst)
     // key = 값 형태로 출력
 	while (envlst)
 	{
-		if (envlst->val)
+		if (envlst->value)
 		{
 			ft_putstr_fd(envlst->key, STDOUT_FILENO);
 			ft_putstr_fd("=", STDOUT_FILENO);
-			ft_putendl_fd(envlst->val, STDOUT_FILENO);
+			ft_putendl_fd(envlst->value, STDOUT_FILENO);
 		}
 		envlst = envlst->next;
 	}
