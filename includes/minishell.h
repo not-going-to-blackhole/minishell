@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 21:14:05 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/13 19:55:20 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 
 # define SUCCESS 0
 # define FAIL 1
+
+// 이전 명령 종료 상태 전역 변수
+int	g_exit_no;
 
 typedef enum e_token_type
 {
@@ -112,12 +115,9 @@ int			mini_export(t_info *info, char **av);
 // builtin_unset.c
 int			mini_unset(t_info *info, char **av);
 
-
-
 // utils.c
 void		printf_error(char *str1, char *str2);
 void		free_all(char **arr);
-
 
 // parsing
 // lexical
@@ -125,6 +125,15 @@ t_token	*do_lexical(t_info *info, char *line);
 
 // heredoc
 void		check_heredoc(t_info *info, t_token *tokens);
+
+// quotation
+void		check_quotation(t_info *info, t_token *token);
+
+//split_quotation
+char		**split_quotation(t_info *info, char *str);
+// parsing_utils
+int	is_separator(char c);
+void	free_2dstr(char **str);
 
 
 // // parsing test
