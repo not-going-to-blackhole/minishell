@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/13 19:55:20 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/15 23:14:55 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <termios.h>
+# include <string.h>
 
 # define SUCCESS 0
 # define FAIL 1

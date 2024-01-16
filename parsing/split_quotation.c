@@ -35,7 +35,6 @@ int	find_env_idx(char *str, int *start, int *end)
 		return (0);
 	while (str[*end] && (ft_isalnum(str[*end]) || str[*end] == '_'))
 		(*end)++;
-	printf("start : %d, end : %d ->  %s\n", *start, *end, ft_substr(str, *start, *end - *start));
 	return (1);
 }
 
@@ -45,7 +44,7 @@ char	*convert_env(t_info *info, char *str)
 	int		start;
 	int		end;
 
-	if (find_env_idx(str, &start, &end))
+	while (find_env_idx(str, &start, &end))
 	{
 		partials[0] = ft_substr(str, 0, start);
 		if (str[start + 1] == '?')
@@ -84,7 +83,7 @@ int	find_quote_idx(t_info *info, char *str, int *start, int *end)
 	return (1);
 }
 
-// 0 - 따옴표 이전 1 - 따옴표 이후
+// 0 - 따옴표 이전 1 - 따옴표 2 - 따옴표 이후
 char	**split_quotation(t_info *info, char *str)
 {
 	char	**res;
@@ -96,7 +95,7 @@ char	**split_quotation(t_info *info, char *str)
 	res = malloc(sizeof(char *) * 4);
 	if (!res)
 		return (NULL);
-	// 따옴표 $무시
+	// 따옴표 전 $무시
 	if (start > 0 && str[start - 1] == '$')
 		res[0] = ft_substr(str, 0, start - 1);
 	else
@@ -106,6 +105,5 @@ char	**split_quotation(t_info *info, char *str)
 		res[1] = convert_env(info, res[1]);
 	res[2] = ft_substr(str, end + 1, ft_strlen(str) - end - 1);
 	res[3] = 0;
-	printf("res[0] : <%s> || res[1]: <%s> || res[2]: <%s> \n", res[0], res[1], res[2]);
 	return (res);
 }
