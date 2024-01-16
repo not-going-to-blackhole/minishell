@@ -32,6 +32,7 @@ t_token	*do_lexical(t_info *info, char *line)
 	tokens = new_token(line, WORD);
 	check_heredoc(info, tokens);
 	check_quotation(info, tokens);
+	check_env(info, tokens);
 	print_tokens(tokens);
 	return (tokens);
 }

@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/13 19:56:05 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/16 19:46:19 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_BUILTIN = srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builti
 		
 SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c parsing/check_heredoc.c \
 		parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \
+		parsing/check_env.c parsing/split_env.c
 
 TEST_SRC = tmp/parsing_test.c
 

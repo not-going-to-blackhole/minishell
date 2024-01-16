@@ -1,38 +1,27 @@
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-static char	**split_env(t_info *info, char *str)
+static void    insert_tokens(t_token *tokens, char **str)
 {
-	char	**res;
-	char	*key;
-	char	*value;
-	int		loc;
+	t_token *tmp;
+	t_token *tail;
 
-	loc = 0;
-	while (str[loc] && str[loc] != '=')
-		loc++;
-	key = ft_substr(str, 0, loc);
-	if (str[loc] != '\0')
-		value = ft_substr(str, loc + 1, ft_strlen(str) - loc - 1);
-	else
-		value = NULL;
-	if (if_key_exist_changing_val(info, key, value))
+	tail = tokens->next;
+	tokens->next = NULL;
+	free(tokens->str);
+	tokens->str = ft_strdup(str[0]);
+	if (str[1][0])
+		add_token(&tokens, ft_strdup(str[1]), ARGV);
+	if (str[3][0])
 	{
-		free(key);
-		free(value);
-		return (NULL);
+		add_token(&tokens, ft_strdup(str[2]), SPACING);
+		add_token(&tokens, ft_strdup(str[3]), ARGV);
 	}
-	res = (char **)malloc(sizeof(char *) * 3);
-	if (!res)
-		return (NULL);
-	res[0] = key;
-	res[1] = value;
-	res[2] = NULL;
-	return (res);
+	tmp = tokens;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = tail;
+	free_2dstr(str);
 }
-
-// static  void    insert_tokens(t_token *tokens, char **str)
-// {
-// }
 
 void    check_env(t_info *info, t_token *tokens)
 {

@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/15 23:14:55 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:41:45 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,17 @@ void		check_quotation(t_info *info, t_token *token);
 
 //split_quotation
 char		**split_quotation(t_info *info, char *str);
+int	find_env_idx(char *str, int *start, int *end);
+
 // parsing_utils
 int	is_separator(char c);
 void	free_2dstr(char **str);
+
+// env
+void		check_env(t_info *info, t_token *token);
+
+// split_env
+char		**split_env(t_info *info, char *str);
 
 
 // // parsing test
