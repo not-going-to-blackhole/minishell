@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/16 19:46:19 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/17 11:20:16 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # woorikim's m1
-#LDFLAGS = -L /opt/homebrew/opt/readline/lib -lreadline
-#CPPFLAGS = -I /opt/homebrew/opt/readline/include
+LDFLAGS = -L /opt/homebrew/opt/readline/lib -lreadline
+CPPFLAGS = -I /opt/homebrew/opt/readline/include
 
 # cluster's MAC
- LDFLAGS = -L $(HOME)/.brew/opt/readline/lib -lreadline
- CPPFLAGS = -I $(HOME)/.brew/opt/readline/include
+#  LDFLAGS = -L $(HOME)/.brew/opt/readline/lib -lreadline
+#  CPPFLAGS = -I $(HOME)/.brew/opt/readline/include
 
 LIBRARY = libft/libft.a
 
@@ -32,7 +32,7 @@ SRC_BUILTIN = srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builti
 		
 SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c parsing/check_heredoc.c \
 		parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \
-		parsing/check_env.c parsing/split_env.c
+		parsing/check_env.c parsing/split_env.c parsing/parse_by_delimiter.c \
 
 TEST_SRC = tmp/parsing_test.c
 
