@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/11 14:05:48 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:13:58 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	mini_cd(t_info *info, char **av)
 		if (path[0] == '\0')
 		{
 			free(path);
-			ft_putendl_fd("minishell: cd: HOME not set", STDERR_FILENO);
+			ft_putendl_fd("minishell: cd: HOME not setting", STDERR_FILENO);
 			return (1);
 		}
 		chdir(path);
