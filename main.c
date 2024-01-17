@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/17 13:29:09 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:19:33 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	parse_line(t_info *info, char *line)
 	info->syntax_error = 0;
 	tokens = do_lexical(info, line);
 	if (!info->syntax_error)
+		info->syntax_error = do_syntax(info, tokens);
 	
 }
 

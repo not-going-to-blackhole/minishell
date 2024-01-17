@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
+#    By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/01/17 11:20:16 by woorikim         ###   ########.fr        #
+=======
+#    Updated: 2024/01/17 10:58:48 by yeeunpar         ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +32,7 @@ SRC = main.c reading.c
 		
 SRC_BUILTIN = srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  \
 		srcs/builtin/builtin_export.c srcs/builtin/builtin_unset.c srcs/builtin/builtin_env.c \
-		srcs/builtin/utils.c \
+		srcs/builtin/utils.c srcs/cmd_list/cmd_memory_management.c \
 		
 SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c parsing/check_heredoc.c \
 		parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \
