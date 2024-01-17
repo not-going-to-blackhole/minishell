@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/17 10:59:34 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:40:37 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,30 @@ int			mini_echo(char **av);
 int			mini_cd(t_info *info, char **av);
 
 // builtin_export.c
-int			mini_export(t_info *info, char **av);
+int			export(t_info *info, char **av);
 
 // builtin_unset.c
 int			mini_unset(t_info *info, char **av);
 
 // utils.c
-void		printf_error(char *str1, char *str2);
+void		mini_error(char *str1, char *str2);
 void		free_all(char **arr);
 
 // cmd_memory_management.c
 void		free_cmd_list(t_cmd **cmd_list);
+
+// heredoc_processor.c
+void		execute_heredoc(t_info *info, t_cmd *cmd_list);
+void		unlink_heredoc_files(t_cmd *cmd_list);
+
+// mini_execution.c (main of exec)
+char		*get_cmd_file(char *cmd, char **path_list);
+void		print_command_not_found(char **path_list, char *str);
+int			check_builtin(t_info *info, t_cmd *cmd_list, int cnt);
+void		mini_execution(t_info *info, t_cmd *cmd_list);
+
+// set_heredoc_fd.c
+int			set_heredoc_fd(t_cmd *cmd_list, int cnt);
 
 // parsing
 // lexical
