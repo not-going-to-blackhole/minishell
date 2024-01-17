@@ -71,4 +71,5 @@ void    parse_by_delimiter(t_token *tokens)
     check_delimeter(tokens, ">>");
     check_delimeter(tokens, "<");
     check_delimeter(tokens, ">");
+    //check_delimeter(tokens, ";"); 고민...
 }

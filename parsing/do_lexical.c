@@ -44,6 +44,11 @@ static void	delete_useless(t_token *tokens)
 				cur = prev;
 			}
 		}
+		else if (cur->type == SPACING)
+		{
+			delete_token(&tokens, cur);
+			cur = prev;
+		}
 		prev = cur;
 		cur = cur->next;
 	}
