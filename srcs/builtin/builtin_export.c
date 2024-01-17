@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 10:49:10 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/11 13:51:05 by yeeunpar         ###   ########.fr       */
+/*   Created: 2024/01/17 11:03:32 by yeeunpar          #+#    #+#             */
+/*   Updated: 2024/01/17 11:08:13 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	if_key_exist_changing_val(t_info *info, char *key, char *val)
+static int	update_env_val(t_info *info, char *key, char *val)
 {
-	t_env_node	*cur;
+	t_envlst	*cur;
 
 	cur = info->env_list;
 	while (cur)
@@ -29,9 +29,9 @@ static int	if_key_exist_changing_val(t_info *info, char *key, char *val)
 			}
 			if (val)
 			{
-				if (cur->val)
-					free(cur->val);
-				cur->val = ft_strdup(val);
+				if (cur->value)
+					free(cur->value);
+				cur->value = ft_strdup(val);
 			}
 			return (1);
 		}
@@ -40,16 +40,16 @@ static int	if_key_exist_changing_val(t_info *info, char *key, char *val)
 	return (0);
 }
 
-static void	print_env_list(t_env_node *env_list)
+static void	display_env_list(t_envlst *env_list)
 {
 	while (env_list)
 	{
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		ft_putstr_fd(env_list->key, STDOUT_FILENO);
-		if (env_list->val)
+		if (env_list->value)
 		{
 			ft_putstr_fd("=\"", STDOUT_FILENO);
-			ft_putstr_fd(env_list->val, STDOUT_FILENO);
+			ft_putstr_fd(env_list->value, STDOUT_FILENO);
 			ft_putstr_fd("\"", STDOUT_FILENO);
 		}
 		ft_putstr_fd("\n", STDOUT_FILENO);
@@ -57,10 +57,10 @@ static void	print_env_list(t_env_node *env_list)
 	}
 }
 
-static int	is_key_vaild(char *key)
+static int	is_vaild_env_key(char *key)
 {
 	int	idx;
-
+	
     idx = 0;
 	if (ft_isalpha(key[0]) == 0 && key[0] != '_')
 		return (0);
@@ -70,17 +70,17 @@ static int	is_key_vaild(char *key)
 	return (1);
 }
 
-static int	setting_error_flag(t_env_node *env_node, char *str, int *error_flag)
+static int	handle_invaild_key(t_envlst *env_node, char *str, int *error_flag)
 {
 	char	*key;
 
 	key = env_node->key;
-	if (!is_key_vaild(key))
+	if (!is_vaild_env_key(key))
 	{
 		ft_putstr_fd("minishell: export: \'", STDERR_FILENO);
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putendl_fd("\': not a valid identifier", STDERR_FILENO);
-		free_env_list(env_node);
+		free_envlst(env_node);
 		*error_flag = 1;
 		return (1);
 	}
@@ -100,18 +100,18 @@ int	mini_export(t_info *info, char **av)
 		if (av[idx][0] == '\0')
 			continue ;
 		new = create_env_node(av[idx]);
-		if (setting_error_flag(new, av[idx], &flag_error))
+		if (handle_invaild_key_error(new, av[idx], &flag_error))
 			continue ;
-		else if (if_key_exist_changing_val(info, new->key, new->val))
-			// free_env_list(new);
+		else if (update_env_val(info, new->key, new->value))
+			free_envlst(new);
 		else
 		{
 			if (ft_strncmp(new->key, "PATH", 4) == 0)
-				info->path_list = ft_split(new->val, ':');
-			// add_env_node(&info->env_list, new);
+				info->path_list = ft_split(new->value, ':');
+			add_envlst(&info->env_list, new);
 		}
 	}
 	if (idx == 1)
-		// print_env_list(info->env_list);
+		display_env_list(info->env_list);
 	return (flag_error);
 }

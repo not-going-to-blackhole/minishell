@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/10 18:25:06 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:26:42 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,30 @@ void	add_envlst(t_envlst **head, t_envlst *new)
 	tmp->next = new;
 }
 
-void	init_envlst(t_envlst **head, char *envp[])
+
+t_envlst	*create_env_node(char *envp)
 {
 	int		loc;
-	char	*key;
-	char	*value;
+	char 	*key;
+	char 	*value;
 
+	loc = 0;
+	while (envp[loc] && envp[loc] != '=')
+		loc++;
+	key = ft_substr(envp, 0, loc);
+	if (envp[loc] != '\0')
+		value = ft_substr(envp, loc + 1, ft_strlen(envp) - loc - 1);
+	else
+		value = NULL;
+	return (new_envlst(key, value));
+}
+
+void	init_envlst(t_envlst **head, char *envp[])
+{
 	*head = NULL;
 	while (*envp != NULL && **envp != '\0')
 	{
-		loc = 0;
-		while ((*envp)[loc] && (*envp)[loc] != '=')
-			loc++;
-		key = ft_substr(*envp, 0, loc);
-		value = ft_substr(*envp, loc + 1, ft_strlen(*envp) - loc - 1);
-		add_envlst(head, new_envlst(key, value));
+		add_envlst(head, create_env_node(*envp));
 		envp++;
 	}
 	return ;
@@ -75,4 +84,36 @@ void	get_path_list(t_info **info)
 	if (!((*info)->env_list))
 		return ;
 	(*info)->path_list = ft_split(tmp->value, ':');
+}
+
+char	*get_envval(t_envlst *head, char *key)
+{
+	char		*value;
+	t_envlst	*tmp;
+
+	tmp = head;
+	while (tmp && (ft_strlen(key) != ft_strlen(tmp->key)
+			|| ft_strncmp(key, tmp->key, ft_strlen(key))))
+		tmp = tmp->next;
+	if (tmp)
+		value = ft_strdup(tmp->value);
+	else
+		value = ft_strdup("");
+	free(key);
+	return (value);
+}
+
+void	free_envlst(t_envlst *head)
+{
+	t_envlst	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp->key);
+		if (tmp->value)
+			free(tmp->value);
+		free(tmp);
+	}
 }

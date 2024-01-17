@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 12:52:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/17 10:13:58 by yeeunpar         ###   ########.fr       */
+/*   Created: 2024/01/17 10:25:58 by yeeunpar          #+#    #+#             */
+/*   Updated: 2024/01/17 10:27:19 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	mini_cd(t_info *info, char **av)
 	}
 	if (av[1] == NULL)
 	{
-		// get_env_value_and_free_env_key -> parsing 부분 함수인가?
-		path = get_env_value_and_free_env_key(info->env_list,
+		path = get_envval(info->env_list,
 				ft_strdup("HOME"));
 		if (path[0] == '\0')
 		{

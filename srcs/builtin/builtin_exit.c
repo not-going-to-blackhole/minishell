@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/17 11:15:00 by yeeunpar          #+#    #+#             */
+/*   Updated: 2024/01/17 11:15:02 by yeeunpar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 // 문자열을 long long 정수로 반환하는 함수
@@ -31,8 +43,8 @@ static int	mini_change_longlong(char *str, long long *n)
 	return (1);
 }
 
-// exit 인자에 따라 termination_status(전역변수, 쉘이 종료될 때 사용되는 종료 상태를 냄) 설정
-// 변환이 불가능한 경우 에러 메시지 출력후 termination_status 를 255로 설정
+// exit 인자에 따라 g_termination_status(전역변수, 쉘이 종료될 때 사용되는 종료 상태를 냄) 설정
+// 변환이 불가능한 경우 에러 메시지 출력후 g_termination_status 를 255로 설정
 static void	set_exit_status(int arg_cnt, char *str)
 {
 	long long	exit_status;
@@ -40,21 +52,21 @@ static void	set_exit_status(int arg_cnt, char *str)
 	if (arg_cnt == 2)
 	{
 		if (mini_change_longlong(str, &exit_status))
-			termination_status = (unsigned char)exit_status;
+			g_termination_status = (unsigned char)exit_status;
 		else
 		{
 			ft_putstr_fd("minishell: exit: ", STDOUT_FILENO);
 			ft_putstr_fd(str, STDOUT_FILENO);
 			ft_putendl_fd(": numeric argument required", STDOUT_FILENO);
-			termination_status = 255;
+			g_termination_status = 255;
 		}
 	}
 	else
-		termination_status = 0;
+		g_termination_status = 0;
 }
 
 // exit 명령어를 처리 후 쉘 종료
-// 환경 변수와 경로 리스트를 해제하고 termination_status로 프로그램 종료
+// 환경 변수와 경로 리스트를 해제하고 g_termination_status로 프로그램 종료
 int	mini_exit(t_info *info, t_cmd *cmd_list)
 {
 	int	arg_cnt;
@@ -73,13 +85,15 @@ int	mini_exit(t_info *info, t_cmd *cmd_list)
 			return (1);
 		}
 		set_exit_status(arg_cnt, cmd_list->argv[1]);
+		// unlink_heredoc_tmp -> heredoc 파일의 임시 파일을 삭제(unlink)하는 함수
+		// unlink_heredoc_tmp() 만들어야 함
 		unlink_heredoc_tmp(cmd_list);
 		free_cmd_list(&cmd_list);
 	}
 	else
 		ft_putendl_fd("exit", STDOUT_FILENO);
-	// free_env_list(info->env_list);
+	// free_envlst(info->env_list);
 	free_all(info->path_list);
-	exit(termination_status);
+	exit(g_termination_status);
 	return (0);
 }

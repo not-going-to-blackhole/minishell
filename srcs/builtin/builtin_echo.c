@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:05:57 by yeeun             #+#    #+#             */
-/*   Updated: 2024/01/11 14:24:12 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:27:56 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	echo_arguments(char **av, int idx)
 	}
 }
 
-int mini_echo(char **av) 
+int	mini_echo(char **av) 
 {
 	int	idx;
 	int	n_idx;
