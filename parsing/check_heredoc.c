@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static int	handle_quote(t_info *info, t_token *token, char *str, int loc)
+static int	get_quotation(t_info *info, t_token *token, char *str, int loc)
 {
 	char	*rest;
 	int		skip;
@@ -20,14 +20,8 @@ static int	handle_quote(t_info *info, t_token *token, char *str, int loc)
 	return (loc + skip + 1);
 }
 
-static int	is_separator(char c)
-{
-	if (c == '|' || c == ';' || c == '<' || c == '>')
-		return (1);
-	return (0);
-}
 
-static int get_argv_loc(t_info *info, t_token *token, char *str, int loc)
+static int	get_argv_loc(t_info *info, t_token *token, char *str, int loc)
 {
 	int		skip;
 	char	*tmp;
@@ -35,7 +29,7 @@ static int get_argv_loc(t_info *info, t_token *token, char *str, int loc)
 	while (str[loc] && !is_separator(str[loc]))
 	{
 		if (str[loc] == '\'' || str[loc] == '\"')
-			loc = handle_quote(info, token, str, loc);
+			loc = get_quotation(info, token, str, loc);
 		else
 		{
 			skip = 1;
@@ -98,8 +92,6 @@ static void	parse_heredoc(t_info *info, t_token *token, char *str)
 	if (new)
 		free(new);
 }
-
-
 
 void	check_heredoc(t_info *info, t_token *tokens)
 {
