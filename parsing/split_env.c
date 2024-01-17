@@ -2,7 +2,7 @@
 
 static void	get_exit_no(char **res)
 {
-	res[1] = ft_itoa(g_exit_no);
+	res[1] = ft_itoa(g_termination_status);
 	res[2] = ft_strdup(" ");
 	res[3] = ft_strdup("");
 	res[4] = NULL;

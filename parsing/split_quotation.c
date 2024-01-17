@@ -50,7 +50,7 @@ char	*convert_env(t_info *info, char *str)
 		if (str[start + 1] == '?')
 		{
 			end = start + 2;
-			partials[1] = ft_itoa(g_exit_no);
+			partials[1] = ft_itoa(g_termination_status);
 		}
 		else
 		{

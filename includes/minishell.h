@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/16 19:41:45 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:59:34 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define FAIL 1
 
 // 이전 명령 종료 상태 전역 변수
-int	g_exit_no;
+int	g_termination_status;
 
 typedef enum e_token_type
 {
@@ -120,9 +120,12 @@ int			mini_unset(t_info *info, char **av);
 void		printf_error(char *str1, char *str2);
 void		free_all(char **arr);
 
+// cmd_memory_management.c
+void		free_cmd_list(t_cmd **cmd_list);
+
 // parsing
 // lexical
-t_token	*do_lexical(t_info *info, char *line);
+t_token		*do_lexical(t_info *info, char *line);
 
 // heredoc
 void		check_heredoc(t_info *info, t_token *tokens);
@@ -132,11 +135,11 @@ void		check_quotation(t_info *info, t_token *token);
 
 //split_quotation
 char		**split_quotation(t_info *info, char *str);
-int	find_env_idx(char *str, int *start, int *end);
+int			find_env_idx(char *str, int *start, int *end);
 
 // parsing_utils
-int	is_separator(char c);
-void	free_2dstr(char **str);
+int			is_separator(char c);
+void		free_2dstr(char **str);
 
 // env
 void		check_env(t_info *info, t_token *token);
