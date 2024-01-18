@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   do_lexical.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 13:16:02 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/18 13:16:09 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	print_tokens(t_token *tokens)
@@ -27,9 +39,9 @@ void	print_tokens(t_token *tokens)
 
 static void	delete_useless(t_token *tokens)
 {
-	t_token *prev;
+	t_token	*prev;
 	t_token	*cur;
-	
+
 	cur = tokens;
 	prev = cur;
 	while (cur)

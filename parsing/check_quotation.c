@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_quotation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 13:15:59 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/18 13:16:00 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	insert_tokens(t_token *tokens, char **res)
@@ -15,7 +27,7 @@ static void	insert_tokens(t_token *tokens, char **res)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = tail;
-	free_2dstr(res);
+	free_all(res);
 }
 
 void	check_quotation(t_info *info, t_token *tokens)

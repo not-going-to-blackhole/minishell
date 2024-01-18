@@ -2,9 +2,12 @@
 
 void	term_print_off(t_info *info)
 {
-	tcgetattr(STDIN_FILENO, &info->ms_termios); // 터미널 속성 가져오기
-	(&info->ms_termios)->c_lflag &= ~(ECHOCTL); // 제어문자 표시 끄기
-	tcsetattr(STDIN_FILENO, TCSANOW, &info->ms_termios); // 옵션 즉시 적용
+	// 터미널 속성 가져오기
+	tcgetattr(STDIN_FILENO, &info->ms_termios);
+	// 제어문자 표시 끄기
+	(&info->ms_termios)->c_lflag &= ~(ECHOCTL);
+	// 옵션 즉시 적용
+	tcsetattr(STDIN_FILENO, TCSANOW, &info->ms_termios);
 }
 
 void	term_print_on(t_info *info)
@@ -16,9 +19,9 @@ void	term_print_on(t_info *info)
 
 void	sighandler_heredoc(int signum)
 {
-    // ctrl + c : 줄바꿈 출력, 종료
+	// ctrl + c : 줄바꿈 출력, 종료
 	if (signum == SIGINT)
-    {
+	{
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -49,9 +52,9 @@ void	sighandler_default(int signum)
 	}
 }
 
-void    setting_signal(void)
+void	setting_signal(void)
 {
-    signal(SIGINT, sighandler_default);
-    signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sighandler_default);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN); // ctrl + z
 }
