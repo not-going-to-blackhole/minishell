@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/01/17 10:48:49 by woorikim         ###   ########.fr       */
-=======
-/*   Updated: 2024/01/17 10:59:34 by yeeunpar         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/01/17 21:07:57 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +24,6 @@
 # include <errno.h>
 # include <termios.h>
 # include <string.h>
-
-# define SUCCESS 0
-# define FAIL 1
 
 // 이전 명령 종료 상태 전역 변수
 int	g_termination_status;
@@ -61,10 +54,10 @@ typedef struct s_redir
 
 typedef struct s_cmd
 {
-	char			**av;
+	char			**argv;
 	t_redir 		*redir;
-	struct s_cmd	*next;
 	struct s_cmd	*prev;
+	struct s_cmd	*next;
 	int				pipe[2];
 }					t_cmd;
 
@@ -120,16 +113,18 @@ int			mini_export(t_info *info, char **av);
 // builtin_unset.c
 int			mini_unset(t_info *info, char **av);
 
+// cmd manage
+void		free_cmd_list(t_cmd **cmd_list);
+
+
 // utils.c
 void		printf_error(char *str1, char *str2);
 void		free_all(char **arr);
 
-// cmd_memory_management.c
-void		free_cmd_list(t_cmd **cmd_list);
 
 // parsing
 // lexical
-t_token		*do_lexical(t_info *info, char *line);
+t_token	*do_lexical(t_info *info, char *line);
 
 // heredoc
 void		check_heredoc(t_info *info, t_token *tokens);
@@ -139,16 +134,11 @@ void		check_quotation(t_info *info, t_token *token);
 
 //split_quotation
 char		**split_quotation(t_info *info, char *str);
-int			find_env_idx(char *str, int *start, int *end);
+int	find_env_idx(char *str, int *start, int *end);
 
 // parsing_utils
-<<<<<<< HEAD
 int		is_separator(char c);
 void	free_2dstr(char **str);
-=======
-int			is_separator(char c);
-void		free_2dstr(char **str);
->>>>>>> main
 
 // env
 void		check_env(t_info *info, t_token *token);
@@ -159,7 +149,20 @@ char		**split_env(t_info *info, char *str);
 // delimiter
 void		parse_by_delimiter(t_token *tokens);
 
+// syntax
+int do_syntax(t_token *tokens);
 
+// parse cmds
+t_cmd	*parse_cmds(t_token *tokens);
+
+// signal
+void    setting_signal(void);
+void    sighandler_default(int signum);
+void    sighandler_quit(int signum);
+void    sighandler_heredoc(int signum);
+
+void	term_print_on(t_info *info);
+void	term_print_off(t_info *info);
 
 // // parsing test
 // void	print_tokens(t_token *tokens);

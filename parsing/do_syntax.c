@@ -37,6 +37,7 @@ static int is_valid_redir(t_token *tokens)
         }
         tokens = tokens->next;
     }
+    return (1);
 }
 
 int do_syntax(t_token *tokens)
