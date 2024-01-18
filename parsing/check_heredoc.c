@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_heredoc.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 13:15:53 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/18 13:15:56 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static int	get_quotation(t_info *info, t_token *token, char *str, int loc)
@@ -10,7 +22,7 @@ static int	get_quotation(t_info *info, t_token *token, char *str, int loc)
 		skip++;
 	if (str[loc + skip] == '\0')
 	{
-		printf_error("quotation error\n", NULL);
+		mini_error("quotation error\n", NULL);
 		info->syntax_error = 1;
 	}
 	rest = ft_substr(str, loc + 1, skip - 1);

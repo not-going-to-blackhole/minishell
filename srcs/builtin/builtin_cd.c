@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 10:25:58 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 10:27:19 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:07:29 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	mini_cd(t_info *info, char **av)
 	// chdir -> 현재 경로를 이동해주는 함수 (성공시 0, 실패시 -1 리턴)
 	if (av[1] && (access(av[1], F_OK) || chdir(av[1])))
 	{
-		printf_error("cd", av[1]);
+		mini_error("cd", av[1]);
 		return (1);
 	}
 	if (av[1] == NULL)

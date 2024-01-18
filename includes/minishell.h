@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 10:52:46 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:25:17 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int			mini_echo(char **av);
 int			mini_cd(t_info *info, char **av);
 
 // builtin_export.c
-int			export(t_info *info, char **av);
+int			mini_export(t_info *info, char **av);
 
 // builtin_unset.c
 int			mini_unset(t_info *info, char **av);
@@ -120,6 +120,7 @@ void		free_cmd_list(t_cmd **cmd_list);
 // utils.c
 void		mini_error(char *str1, char *str2);
 void		free_all(char **arr);
+void		free_all_str(char *str1, char *str2, char *str3, char *str4);
 
 
 // heredoc_processor.c
@@ -151,7 +152,6 @@ int	find_env_idx(char *str, int *start, int *end);
 
 // parsing_utils
 int		is_separator(char c);
-void	free_2dstr(char **str);
 
 // env
 void		check_env(t_info *info, t_token *token);
@@ -177,9 +177,20 @@ void    sighandler_heredoc(int signum);
 void	term_print_on(t_info *info);
 void	term_print_off(t_info *info);
 
+
+//execution
+int			apply_redirections(t_cmd *cmd_list, int cnt);
+void	mini_execution(t_info *info, t_cmd *cmd_list);
+void	execute_heredoc(t_info *info, t_cmd *cmd_list);
+void	unlink_heredoc_files(t_cmd *cmd_list);
+char	*get_cmd_file(char *cmd, char **path_list);
+void	print_command_not_found(char **path_list, char *str);
+int	check_builtin(t_info *info, t_cmd *cmd_list, int cnt);
+
 // // parsing test
 // void	print_tokens(t_token *tokens);
 // void	print_envplst(t_envlst *head);
 // void	print_path_list(char **list);
+void	print_cmds(t_cmd *cmds);
 
 #endif

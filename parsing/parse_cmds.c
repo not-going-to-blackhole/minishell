@@ -1,81 +1,60 @@
 #include "../includes/minishell.h"
 
-void	print_cmds(t_cmd *cmds)
-{
-	t_cmd	*tmp;
-	int		i;
 
-	tmp = cmds;
-	while (tmp)
+
+
+t_cmd	*new_cmd(void)
+{
+	t_cmd *cmd;
+
+	cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
+	cmd->argv = NULL;
+	cmd->redir = NULL;
+	cmd->prev = NULL;
+	cmd->next = NULL;
+	return (cmd);
+}
+
+static int	argv_len(t_token *tokens)
+{
+	int len;
+
+	len = 0;
+	while (tokens && tokens->type != PIPE)
 	{
-		i = 0;
-		while (tmp->argv[i])
-		{
-			printf("argv[%d]: %s\n", i, tmp->argv[i]);
-			i++;
-		}
-		if (tmp->redir)
-		{
-			printf("redir: %s\n", tmp->redir->type);
-			printf("file: %s\n", tmp->redir->file);
-		}
-		tmp = tmp->next;
-	}
-}
-
-
-t_cmd    *new_cmd(void)
-{
-    t_cmd *cmd;
-
-    cmd = (t_cmd *)malloc(sizeof(t_cmd));
-    if (!cmd)
-        return (NULL);
-    cmd->argv = NULL;
-    cmd->redir = NULL;
-    cmd->prev = NULL;
-    cmd->next = NULL;
-    return (cmd);
-}
-
-static int argv_len(t_token *tokens)
-{
-    int len;
-
-    len = 0;
-    while (tokens && tokens->type != PIPE)
-    {
 		if (tokens->type == ARGV)
 			len++;
-        else if (tokens->type == REDIR)
+		else if (tokens->type == REDIR)
 			len--;
 		tokens = tokens->next;
-    }
-    return (len);
+	}
+	return (len);
 }
 
-static char **argv_list(t_token *tokens)
+static char	**argv_list(t_token *tokens)
 {
-    char    **argv;
-    int     index;
+	char	**argv;
+	int		index;
 
-    argv = (char **)malloc(sizeof(char *) * (argv_len(tokens) + 1));
-    if (!argv)
-        return (NULL);
+	argv = (char **)malloc(sizeof(char *) * (argv_len(tokens) + 1));
+	if (!argv)
+		return (NULL);
 	index = 0;
-    while (tokens && tokens->type != PIPE)
-    {
+	while (tokens && tokens->type != PIPE)
+	{
 		if (tokens->type == ARGV)
 			argv[index++] = ft_strdup(tokens->str);
 		else if (tokens->type == REDIR)
 			tokens = tokens->next;
 		tokens = tokens->next;
-    }
+	}
 	argv[index] = NULL;
-    return (argv);
+	return (argv);
 }
 
-t_redir *new_redir(t_token *tokens)
+t_redir	*new_redir(t_token *tokens)
 {
 	t_redir	*redir;
 
@@ -88,7 +67,7 @@ t_redir *new_redir(t_token *tokens)
 	return (redir);
 }
 
-static	void redir_list(t_cmd **cmds, t_token *tokens)
+static	void	redir_list(t_cmd **cmds, t_token *tokens)
 {
 	t_redir	*redir;
 
@@ -105,18 +84,18 @@ static	void redir_list(t_cmd **cmds, t_token *tokens)
 	}
 }
 
-t_cmd   *parse_cmds(t_token *tokens)
+t_cmd	*parse_cmds(t_token *tokens)
 {
-    t_cmd   *cmds;
-    t_cmd   *head;
-    
-    cmds = new_cmd();
-    head = cmds;
-    while(tokens)
-    {
-        if (cmds->argv == NULL && tokens->type == ARGV)
+	t_cmd   *cmds;
+	t_cmd   *head;
+
+	cmds = new_cmd();
+	head = cmds;
+	while(tokens)
+	{
+		if (cmds->argv == NULL && tokens->type == ARGV)
             cmds->argv = argv_list(tokens);
-        else if (tokens->type == REDIR)
+		else if (tokens->type == REDIR)
 		{
 			redir_list(&cmds, tokens);
 			tokens = tokens->next;
