@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:26:22 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 13:48:41 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:52:41 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ static int	execute_builtin(t_info *info, t_cmd *cmd_list, int cnt)
 {
 	if (apply_redirections(cmd_list, cnt) == -1)
 	{
-		g_exit_status = 1;
+		g_termination_status = 1;
 		return (0);
 	}
 	dup2(info->stdin, STDIN_FILENO);
-	if (ft_strncmp(cmd_list->argv[0], "cd", 2) == 0)
-		g_exit_status = ms_cd(info, cmd_list->argv);
-	if (ft_strncmp(cmd_list->argv[0], "echo", 4) == 0)
-		g_exit_status = ms_echo(cmd_list->argv);
-	if (ft_strncmp(cmd_list->argv[0], "env", 3) == 0)
-		g_exit_status = ms_env(info->env_list);
-	if (ft_strncmp(cmd_list->argv[0], "exit", 4) == 0)
-		g_exit_status = ms_exit(info, cmd_list);
-	if (ft_strncmp(cmd_list->argv[0], "export", 6) == 0)
-		g_exit_status = ms_export(info, cmd_list->argv);
-	if (ft_strncmp(cmd_list->argv[0], "pwd", 3) == 0)
-		g_exit_status = ms_pwd();
-	if (ft_strncmp(cmd_list->argv[0], "unset", 5) == 0)
-		g_exit_status = ms_unset(info, cmd_list->argv);
+	if (ft_strncmp(cmd_list->av[0], "cd", 2) == 0)
+		g_termination_status = mini_cd(info, cmd_list->av);
+	if (ft_strncmp(cmd_list->av[0], "echo", 4) == 0)
+		g_termination_status = mini_echo(cmd_list->av);
+	if (ft_strncmp(cmd_list->av[0], "env", 3) == 0)
+		g_termination_status = mini_env(info->env_list);
+	if (ft_strncmp(cmd_list->av[0], "exit", 4) == 0)
+		g_termination_status = mini_exit(info, cmd_list);
+	if (ft_strncmp(cmd_list->av[0], "export", 6) == 0)
+		g_termination_status = mini_export(info, cmd_list->av);
+	if (ft_strncmp(cmd_list->av[0], "pwd", 3) == 0)
+		g_termination_status = mini_pwd();
+	if (ft_strncmp(cmd_list->av[0], "unset", 5) == 0)
+		g_termination_status = mini_unset(info, cmd_list->av);
 	dup2(info->stdout, STDOUT_FILENO);
 	return (1);
 }
@@ -72,17 +72,17 @@ void	print_command_not_found(char **path_list, char *str)
 		ft_putendl_fd(": command not found", STDERR_FILENO);
 	else
 		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
-	g_exit_status = 127;
-	exit(g_exit_status);
+	g_termination_status = 127;
+	exit(g_termination_status);
 }
 
 int	    check_builtin(t_info *info, t_cmd *cmd_list, int cnt)
 {
 	char	*cmd;
 
-	if (cmd_list->argv == NULL)
+	if (cmd_list->av == NULL)
 		return (0);
-	cmd = cmd_list->argv[0];
+	cmd = cmd_list->av[0];
 	if ((ft_strlen(cmd) == 2 && ft_strncmp(cmd, "cd", 2) == 0) \
 		|| (ft_strlen(cmd) == 4 && ft_strncmp(cmd, "echo", 4) == 0) \
 		|| (ft_strlen(cmd) == 3 && ft_strncmp(cmd, "env", 3) == 0) \
@@ -102,17 +102,17 @@ void	mini_execution(t_info *info, t_cmd *cmd_list)
 	if (pid < 0)
 	{
 		mini_error("fork", NULL);
-		g_exit_status = 1;
+		g_termination_status = 1;
 		return ;
 	}
 	else if (pid == 0)
 		execute_heredoc(info, cmd_list);
 	signal(SIGINT, SIG_IGN);
-	wait(&g_exit_status);
-	if (WIFEXITED(g_exit_status))
-		g_exit_status = WEXITSTATUS(g_exit_status);
-	if (WIFSIGNALED(g_exit_status))
-		g_exit_status = 1;
+	wait(&g_termination_status);
+	if (WIFEXITED(g_termination_status))
+		g_termination_status = WEXITSTATUS(g_termination_status);
+	if (WIFSIGNALED(g_termination_status))
+		g_termination_status = 1;
 	else
 	{
 		if (cmd_list->next)
