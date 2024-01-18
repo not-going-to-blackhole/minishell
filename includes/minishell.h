@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 10:52:46 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:20:53 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,17 +127,20 @@ void		execute_heredoc(t_info *info, t_cmd *cmd_list);
 void		unlink_heredoc_files(t_cmd *cmd_list);
 
 // mini_execution.c (main of exec)
-char		*get_cmd_file(char *cmd, char **path_list);
-void		print_command_not_found(char **path_list, char *str);
+char		*find_execute_path(char *cmd, char **path_list);
+void		handle_command_not_found_error(char **path_list, char *str);
 int			check_builtin(t_info *info, t_cmd *cmd_list, int cnt);
 void		mini_execution(t_info *info, t_cmd *cmd_list);
 
 // set_heredoc_fd.c
 int			set_heredoc_fd(t_cmd *cmd_list, int cnt);
 
+// another_cmd.c
+void		execute_another_cmd(t_info *info, t_cmd *cmd_list);
+
 // parsing
 // lexical
-t_token	*do_lexical(t_info *info, char *line);
+t_token		*do_lexical(t_info *info, char *line);
 
 // heredoc
 void		check_heredoc(t_info *info, t_token *tokens);
@@ -147,11 +150,11 @@ void		check_quotation(t_info *info, t_token *token);
 
 //split_quotation
 char		**split_quotation(t_info *info, char *str);
-int	find_env_idx(char *str, int *start, int *end);
+int			find_env_idx(char *str, int *start, int *end);
 
 // parsing_utils
-int		is_separator(char c);
-void	free_2dstr(char **str);
+int			is_separator(char c);
+void		free_2dstr(char **str);
 
 // env
 void		check_env(t_info *info, t_token *token);
@@ -163,19 +166,19 @@ char		**split_env(t_info *info, char *str);
 void		parse_by_delimiter(t_token *tokens);
 
 // syntax
-int do_syntax(t_token *tokens);
+int 		do_syntax(t_token *tokens);
 
 // parse cmds
-t_cmd	*parse_cmds(t_token *tokens);
+t_cmd		*parse_cmds(t_token *tokens);
 
 // signal
-void    setting_signal(void);
-void    sighandler_default(int signum);
-void    sighandler_quit(int signum);
-void    sighandler_heredoc(int signum);
+void    	setting_signal(void);
+void    	sighandler_default(int signum);
+void    	sighandler_quit(int signum);
+void    	sighandler_heredoc(int signum);
 
-void	term_print_on(t_info *info);
-void	term_print_off(t_info *info);
+void		term_print_on(t_info *info);
+void		term_print_off(t_info *info);
 
 // // parsing test
 // void	print_tokens(t_token *tokens);
