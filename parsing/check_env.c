@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-static void    insert_tokens(t_token *tokens, char **str)
+static void    insert_tokens(t_token *tokens, char **res)
 {
 	t_token *tmp;
 	t_token *tail;
@@ -8,19 +8,19 @@ static void    insert_tokens(t_token *tokens, char **str)
 	tail = tokens->next;
 	tokens->next = NULL;
 	free(tokens->str);
-	tokens->str = ft_strdup(str[0]);
-	if (str[1][0])
-		add_token(&tokens, ft_strdup(str[1]), ARGV);
-	if (str[3][0])
+	tokens->str = ft_strdup(res[0]);
+	if (res[1][0])
+		add_token(&tokens, ft_strdup(res[1]), ARGV);
+	if (res[3][0])
 	{
-		add_token(&tokens, ft_strdup(str[2]), SPACING);
-		add_token(&tokens, ft_strdup(str[3]), ARGV);
+		add_token(&tokens, ft_strdup(res[2]), SPACING);
+		add_token(&tokens, ft_strdup(res[3]), ARGV);
 	}
 	tmp = tokens;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = tail;
-	free_2dstr(str);
+	free_2dstr(res);
 }
 
 void    check_env(t_info *info, t_token *tokens)

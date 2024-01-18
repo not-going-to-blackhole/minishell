@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:03:32 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 11:08:13 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:40:58 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	mini_export(t_info *info, char **av)
 		if (av[idx][0] == '\0')
 			continue ;
 		new = create_env_node(av[idx]);
-		if (handle_invaild_key_error(new, av[idx], &flag_error))
+		if (handle_invaild_key(new, av[idx], &flag_error))
 			continue ;
 		else if (update_env_val(info, new->key, new->value))
 			free_envlst(new);
