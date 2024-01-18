@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
+#    By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/18 13:22:07 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/18 15:10:04 by yeeunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC = main.c reading.c
 SRC_BUILTIN = srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builtin/builtin_cd.c  \
 		srcs/builtin/builtin_export.c srcs/builtin/builtin_unset.c srcs/builtin/builtin_env.c \
 		srcs/cmd_list/cmd_memory_management.c srcs/execution/heredoc_processor.c \
-		srcs/execution/mini_execution.c srcs/execution/set_heredoc_fd.c
+		srcs/execution/mini_execution.c srcs/execution/set_heredoc_fd.c srcs/execution/another_cmd.c \
+		srcs/execution/single_cmd.c srcs/execution/apply_redirections.c
 		
 SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c parsing/check_heredoc.c \
 		parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \

@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 14:30:01 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:11:12 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void		free_cmd_list(t_cmd **cmd_list);
 void		execute_another_cmd(t_info *info, t_cmd *cmd_list);
 int			apply_redirections(t_cmd *cmd_list, int cnt);
 void		execute_heredoc(t_info *info, t_cmd *cmd_list);
+void		execute_another_cmd(t_info *info, t_cmd *cmd_list);
+void		execute_single_cmd(t_info *info, t_cmd *cmd_list);
 
 // utils.c
 void		mini_error(char *str1, char *str2);
