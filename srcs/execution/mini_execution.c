@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:26:22 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 11:27:12 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:31:41 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ void	handle_command_not_found_error(char **path_list, char *str)
 	exit(g_termination_status);
 }
 
-// 명령어가 내장 명령어인 지 check하고 실행
-int	    check_builtin(t_info *info, t_cmd *cmd_list, int cnt)
+int	check_builtin(t_info *info, t_cmd *cmd_list, int cnt)
 {
 	char	*cmd;
 

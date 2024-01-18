@@ -35,3 +35,26 @@ void	print_path_list(char **list)
 		i++;
 	}
 }
+
+void	print_cmds(t_cmd *cmds)
+{
+	t_cmd	*tmp;
+	int		i;
+
+	tmp = cmds;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->argv[i])
+		{
+			printf("argv[%d]: %s\n", i, tmp->argv[i]);
+			i++;
+		}
+		if (tmp->redir)
+		{
+			printf("redir: %s\n", tmp->redir->type);
+			printf("file: %s\n", tmp->redir->file);
+		}
+		tmp = tmp->next;
+	}
+}

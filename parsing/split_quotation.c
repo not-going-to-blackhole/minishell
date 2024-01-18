@@ -76,7 +76,7 @@ int	find_quote_idx(t_info *info, char *str, int *start, int *end)
 		(*end)++;
 	if (str[*end] == '\0')
 	{
-		printf_error("quotation error\n", NULL);
+		mini_error("quotation error\n", NULL);
 		info->syntax_error = 1;
 		return (0);
 	}

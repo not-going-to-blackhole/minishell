@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_env.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 13:15:37 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/18 13:15:48 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-static void    insert_tokens(t_token *tokens, char **res)
+static void	insert_tokens(t_token *tokens, char **res)
 {
-	t_token *tmp;
-	t_token *tail;
+	t_token	*tmp;
+	t_token	*tail;
 
 	tail = tokens->next;
 	tokens->next = NULL;
@@ -20,21 +32,21 @@ static void    insert_tokens(t_token *tokens, char **res)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = tail;
-	free_2dstr(res);
+	free_all(res);
 }
 
-void    check_env(t_info *info, t_token *tokens)
+void	check_env(t_info *info, t_token *tokens)
 {
-    char    **str;
+	char	**str;
 
-    while (tokens)
-    {
-        if (tokens->type == WORD)
-        {
-            str = split_env(info, tokens->str);
-            if (str)
-                insert_tokens(tokens, str);
-        }
-        tokens = tokens->next;
-    }
+	while (tokens)
+	{
+		if (tokens->type == WORD)
+		{
+			str = split_env(info, tokens->str);
+			if (str)
+				insert_tokens(tokens, str);
+		}
+		tokens = tokens->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/13 18:26:42 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:16:51 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	add_envlst(t_envlst **head, t_envlst *new)
 t_envlst	*create_env_node(char *envp)
 {
 	int		loc;
-	char 	*key;
-	char 	*value;
+	char	*key;
+	char	*value;
 
 	loc = 0;
 	while (envp[loc] && envp[loc] != '=')
@@ -71,7 +71,7 @@ void	init_envlst(t_envlst **head, char *envp[])
 
 void	get_path_list(t_info **info)
 {
-	t_envlst *tmp;
+	t_envlst	*tmp;
 
 	(*info)->path_list = NULL;
 	tmp = (*info)->env_list;

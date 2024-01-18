@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:42:55 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 13:48:07 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:54:49 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ static int	set_append_fd(char *outfile)
 // redirection 적용 (파일을 열고 닫는 등 동작)
 int			apply_redirections(t_cmd *cmd_list, int cnt)
 {
-	t_redirection	*cur;
+	t_redir	*cur;
 	int				result;
 
-	cur = cmd_list->redirection;
+	cur = cmd_list->redir;
 	while (cur)
 	{
 		if (ft_strncmp(cur->type, "<<", 2) == 0)
