@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:26:22 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 13:31:41 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:21:14 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,5 @@ void	mini_execution(t_info *info, t_cmd *cmd_list)
 		else
 			execute_single_cmd(info, cmd_list);
 	}
-	unlink_heredoc_tmp(cmd_list);
+	unlink_heredoc_files(cmd_list);
 }
