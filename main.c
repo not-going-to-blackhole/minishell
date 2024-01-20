@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/17 21:12:33 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:36:04 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	update_pwd(t_info *info)
 	mini_unset(info, pwd);
 	mini_export(info, pwd);
 	i = 0;
-	while(pwd[i])
+	while (pwd[i])
 	{
 		if (pwd[i])
 			free(pwd[i]);
@@ -42,7 +42,7 @@ static void	info_init(t_info *info, char **envp)
 	get_path_list(&info);
 	info->stdin = dup(STDIN_FILENO);
 	info->stdout = dup(STDOUT_FILENO);
-	term_print_on(info);
+	term_print_off(info);
 	update_pwd(info);
 }
 
@@ -50,7 +50,7 @@ static void	parse_line(t_info *info, char *line)
 {
 	t_token	*tokens;
 	t_cmd	*cmds;
-	
+
 	info->syntax_error = 0;
 	tokens = do_lexical(info, line);
 	cmds = NULL;
@@ -59,11 +59,11 @@ static void	parse_line(t_info *info, char *line)
 	if (!info->syntax_error && tokens)
 		cmds = parse_cmds(tokens);
 	free_tokens(tokens);
-	
+
 	if (cmds)
 	{
 		//execute~
-		//free_cmds(cmds);
+		free_cmds(cmds);
 	}
 }
 

@@ -1,16 +1,16 @@
 #include "../includes/minishell.h"
 
-void	print_tokens(t_token *tokens)
-{
-	t_token	*tmp;
+//void	print_tokens(t_token *tokens)
+//{
+//	t_token	*tmp;
 
-	tmp = tokens;
-	while (tmp)
-	{
-		printf("str: %s, type: %d\n", tmp->str, tmp->type);
-		tmp = tmp->next;
-	}
-}
+//	tmp = tokens;
+//	while (tmp)
+//	{
+//		printf("str: %s, type: %d\n", tmp->str, tmp->type);
+//		tmp = tmp->next;
+//	}
+//}
 
 void	print_envplst(t_envlst *head)
 {

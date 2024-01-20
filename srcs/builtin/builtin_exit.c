@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:15:00 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 11:15:02 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:30:18 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ int	mini_exit(t_info *info, t_cmd *cmd_list)
 		set_exit_status(arg_cnt, cmd_list->argv[1]);
 		// unlink_heredoc_tmp -> heredoc 파일의 임시 파일을 삭제(unlink)하는 함수
 		// unlink_heredoc_tmp() 만들어야 함
-		unlink_heredoc_tmp(cmd_list);
+		unlink_heredoc_files(cmd_list);
 		free_cmd_list(&cmd_list);
 	}
 	else
 		ft_putendl_fd("exit", STDOUT_FILENO);
-	// free_envlst(info->env_list);
+	free_envlst(info->env_list);
 	free_all(info->path_list);
 	exit(g_termination_status);
 	return (0);

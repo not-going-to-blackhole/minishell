@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:46 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 15:07:46 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:36:21 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	execute_single_cmd(t_info *info, t_cmd *cmd_list)
 			mini_error("fork", NULL);
 		else if (pid == 0)
 		{
-			signal(SIGINT, quit_handler);
-			signal(SIGQUIT, quit_handler);
+			signal(SIGINT, sighandler_quit);
+			signal(SIGQUIT, sighandler_quit);
 			run_single_cmd_child(info, cmd_list);
 		}
 		else

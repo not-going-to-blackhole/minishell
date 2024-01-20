@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 15:11:12 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:20:34 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_cmd
 	int				pipe[2];
 }					t_cmd;
 
-
 typedef struct s_envlst
 {
 	char			*key;
@@ -78,7 +77,6 @@ typedef struct s_info
 	t_envlst		*env_list;
 	char			**path_list;
 }	t_info;
-
 
 // reading
 char		*read_input(void);
@@ -97,6 +95,7 @@ void		init_envlst(t_envlst **head, char *envp[]);
 void		get_path_list(t_info **info);
 char		*get_envval(t_envlst *head, char *key);
 void		free_envlst(t_envlst *head);
+char		**env_list_to_envp(t_envlst *env_list);
 
 /* option : execution */
 

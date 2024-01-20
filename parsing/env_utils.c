@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:16:51 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:20:19 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,32 @@ void	free_envlst(t_envlst *head)
 			free(tmp->value);
 		free(tmp);
 	}
+}
+char	**env_list_to_envp(t_envlst *env_list)
+{
+	char		**envp;
+	int			cnt;
+	t_envlst	*tmp;
+
+	cnt = 0;
+	tmp = env_list;
+	while (tmp)
+	{
+		cnt++;
+		tmp = tmp->next;
+	}
+	envp = (char **)malloc(sizeof(char *) * (cnt + 1));
+	if (!envp)
+		return (NULL);
+	cnt = 0;
+	while (env_list)
+	{
+		envp[cnt] = ft_strjoin(env_list->key, "=");
+		if (env_list->value)
+			envp[cnt] = ft_strjoin(envp[cnt], env_list->value);
+		env_list = env_list->next;
+		cnt++;
+	}
+	envp[cnt] = NULL;
+	return (envp);
 }
