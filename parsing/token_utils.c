@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:48:07 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/11 19:55:13 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 17:44:46 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ void	delete_token(t_token **head, t_token *target)
 {
 	t_token *tmp;
 
-	if (!*head)
+	if (!*head || !target)
 		return ;
 	if (*head == target)
 	{
 		*head = (*head)->next;
-		free(target->str);
+		if (target->str)
+			free(target->str);
 		free(target);
 		return ;
 	}
@@ -64,7 +65,8 @@ void	delete_token(t_token **head, t_token *target)
 		if (tmp->next == target)
 		{
 			tmp->next = tmp->next->next;
-			free(target->str);
+			if (target->str)
+				free(target->str);
 			free(target);
 			return ;
 		}
@@ -76,12 +78,13 @@ void	free_tokens(t_token *head)
 {
 	t_token *tmp;
 
-	while(head)
+	while (head)
 	{
-		tmp = head->next;
-		free(head->str);
-		free(head);
-		head = tmp;
+		tmp = head;
+		head = head->next;
+		if (tmp->str)
+			free(tmp->str);
+		free(tmp);
 	}
 }
 

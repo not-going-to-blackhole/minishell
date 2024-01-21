@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/21 16:10:39 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/21 17:30:47 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	parse_line(t_info *info, char *line)
 	
 	if (cmds)
 	{
-		//execute~
-		//free_cmds(cmds);
+		mini_execution(info, cmds);
+		free_cmd_list(&cmds);
 	}
 }
 
@@ -81,12 +81,11 @@ int	main(int argc, char **argv, char **envp)
 		line = read_input();
 		if (!line)
 		{
-			//ms_exit(&info, NULL);
+			mini_exit(&info, NULL);
 			break ;
 		}
 		else if (line[0] != '\0')
 		{
-			//printf("input %s \n", line);
 			parse_line(&info, line);
 		}
 		free(line);	

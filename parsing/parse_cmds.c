@@ -108,6 +108,6 @@ t_cmd	*parse_cmds(t_token *tokens)
 		}
 		tokens = tokens->next;
 	}
-	print_cmds(head);
+	//print_cmds(head);
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:16:02 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:16:09 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 17:44:10 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ void	print_tokens(t_token *tokens)
 			type = "SPACING";
 		else
 			type = "UNKNOWN";
-		printf("str: <%s>\ntype: %s\n-------------\n", tmp->str, type);
+		printf("str: <%s>\ntype: %s\npointer:%p\n-------------\n", tmp->str, type, tmp);
 		tmp = tmp->next;
 	}
 }
 
-static void	delete_useless(t_token *tokens)
+static void	delete_useless(t_token **tokens)
 {
 	t_token	*prev;
 	t_token	*cur;
 
-	cur = tokens;
+	cur = *tokens;
 	prev = cur;
 	while (cur)
 	{
@@ -52,13 +52,13 @@ static void	delete_useless(t_token *tokens)
 				cur->type = ARGV;
 			else
 			{
-				delete_token(&tokens, cur);
+				delete_token(tokens, cur);
 				cur = prev;
 			}
 		}
 		else if (cur->type == SPACING)
 		{
-			delete_token(&tokens, cur);
+			delete_token(tokens, cur);
 			cur = prev;
 		}
 		prev = cur;
@@ -75,7 +75,6 @@ t_token	*do_lexical(t_info *info, char *line)
 	check_quotation(info, tokens);
 	check_env(info, tokens);
 	parse_by_delimiter(tokens);
-	delete_useless(tokens);
-	print_tokens(tokens);
+	delete_useless(&tokens);
 	return (tokens);
 }
