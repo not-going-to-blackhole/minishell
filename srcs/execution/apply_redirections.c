@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:42:55 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 12:54:49 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:07:25 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	set_heredoc_fd(int num)
 	file_cnt = ft_itoa(num);
 	file_name = ft_strjoin(file_cnt, ".tmp");
 	fd = open(file_name, O_RDONLY);
-	free_strs(file_cnt, file_name, NULL, NULL);
+	free_all_str(file_cnt, file_name, NULL, NULL);
 	if (fd == -1 || dup2(fd, STDIN_FILENO) == -1)
 	{
 		mini_error("heredoc", file_name);

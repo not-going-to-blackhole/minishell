@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:46 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 15:07:46 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:06:21 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	run_single_cmd_child(t_info *info, t_cmd *cmd_list)
 	file = find_execute_path(cmd_list->argv[0], info->path_list);
 	if (file == NULL)
 		handle_command_not_found_error(info->path_list, cmd_list->argv[0]);
-    // env_list_to_envp() 함수 만들어야 함
 	execve(file, cmd_list->argv, env_list_to_envp(info->env_list));
 	mini_error("execve", NULL);
 	g_termination_status = 1;
@@ -44,8 +43,8 @@ void	execute_single_cmd(t_info *info, t_cmd *cmd_list)
 			mini_error("fork", NULL);
 		else if (pid == 0)
 		{
-			signal(SIGINT, quit_handler);
-			signal(SIGQUIT, quit_handler);
+			signal(SIGINT, sighandler_quit);
+			signal(SIGQUIT, sighandler_quit);
 			run_single_cmd_child(info, cmd_list);
 		}
 		else

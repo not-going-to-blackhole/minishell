@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:15:00 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/17 11:15:02 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:57:01 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ int	mini_exit(t_info *info, t_cmd *cmd_list)
 			return (1);
 		}
 		set_exit_status(arg_cnt, cmd_list->argv[1]);
-		// unlink_heredoc_tmp -> heredoc 파일의 임시 파일을 삭제(unlink)하는 함수
-		// unlink_heredoc_tmp() 만들어야 함
-		unlink_heredoc_tmp(cmd_list);
+		// unlink_heredoc_files -> heredoc 파일의 임시 파일을 삭제(unlink)하는 함수
+		unlink_heredoc_files(cmd_list);
 		free_cmd_list(&cmd_list);
 	}
 	else
