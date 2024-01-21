@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:14:22 by yeeunpar          #+#    #+#             */
-/*   Updated: 2024/01/18 13:10:18 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:58:08 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,31 @@ void	free_all(char **arr)
 	}
 }
 
+char	**env_list_to_envp(t_envlst *env_list)
+{
+	char		**envp;
+	int			cnt;
+	t_envlst	*tmp;
+
+	cnt = 0;
+	tmp = env_list;
+	while (tmp)
+	{
+		cnt++;
+		tmp = tmp->next;
+	}
+	envp = (char **)malloc(sizeof(char *) * (cnt + 1));
+	if (!envp)
+		return (NULL);
+	cnt = 0;
+	while (env_list)
+	{
+		envp[cnt] = ft_strjoin(env_list->key, "=");
+		if (env_list->value)
+			envp[cnt] = ft_strjoin(envp[cnt], env_list->value);
+		env_list = env_list->next;
+		cnt++;
+	}
+	envp[cnt] = NULL;
+	return (envp);
+}

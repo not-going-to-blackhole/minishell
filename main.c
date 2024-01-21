@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:35:03 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/17 21:12:33 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:10:39 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	info_init(t_info *info, char **envp)
 	get_path_list(&info);
 	info->stdin = dup(STDIN_FILENO);
 	info->stdout = dup(STDOUT_FILENO);
-	term_print_on(info);
+	term_print_off(info);
 	update_pwd(info);
 }
 
@@ -66,7 +66,6 @@ static void	parse_line(t_info *info, char *line)
 		//free_cmds(cmds);
 	}
 }
-
 
 int	main(int argc, char **argv, char **envp)
 {

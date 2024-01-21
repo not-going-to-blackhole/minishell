@@ -6,7 +6,7 @@
 /*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 15:11:12 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/21 16:00:10 by yeeunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ char		*find_execute_path(char *cmd, char **path_list);
 void		handle_command_not_found_error(char **path_list, char *str);
 int			check_builtin(t_info *info, t_cmd *cmd_list, int cnt);
 void		mini_execution(t_info *info, t_cmd *cmd_list);
+char		**env_list_to_envp(t_envlst *env_list);
 
 // parsing
 // lexical
