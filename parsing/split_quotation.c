@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_quotation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 12:09:54 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/22 12:17:12 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static char	*joining_partials(char **partials)
@@ -83,7 +95,6 @@ int	find_quote_idx(t_info *info, char *str, int *start, int *end)
 	return (1);
 }
 
-// 0 - 따옴표 이전 1 - 따옴표 2 - 따옴표 이후
 char	**split_quotation(t_info *info, char *str)
 {
 	char	**res;
@@ -95,7 +106,6 @@ char	**split_quotation(t_info *info, char *str)
 	res = malloc(sizeof(char *) * 4);
 	if (!res)
 		return (NULL);
-	// 따옴표 전 $무시
 	if (start > 0 && str[start - 1] == '$')
 		res[0] = ft_substr(str, 0, start - 1);
 	else

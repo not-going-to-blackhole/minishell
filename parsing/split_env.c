@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_env.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 12:09:47 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/22 12:17:04 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static void	get_exit_no(char **res)
@@ -12,14 +24,12 @@ static void	get_env_value(t_info *info, char **res, char *env)
 {
 	char	*env_val;
 
-    // env도 잘라야 할 수 있나..
 	env_val = get_envval(info->env_list, env);
 	res[1] = ft_strdup(env_val);
 	res[2] = ft_strdup(" ");
 	res[3] = ft_strdup("");
 	free(env_val);
 }
-
 
 char	**split_env(t_info *info, char *str)
 {
@@ -33,7 +43,6 @@ char	**split_env(t_info *info, char *str)
 	if (!res)
 		return (NULL);
 	res[0] = ft_substr(str, 0, start);
-	// (1)env_val + (2)" " + (3)""
 	if (str[start + 1] == '?')
 		get_exit_no(res);
 	else
