@@ -1,8 +1,5 @@
 #include "../includes/minishell.h"
 
-
-
-
 t_cmd	*new_cmd(void)
 {
 	t_cmd *cmd;
@@ -108,6 +105,6 @@ t_cmd	*parse_cmds(t_token *tokens)
 		}
 		tokens = tokens->next;
 	}
-	//print_cmds(head);
+	print_cmds(head);
 	return (head);
 }
