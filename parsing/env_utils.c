@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 17:46:32 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:16:51 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:16:30 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	add_envlst(t_envlst **head, t_envlst *new)
 		tmp = tmp->next;
 	tmp->next = new;
 }
-
 
 t_envlst	*create_env_node(char *envp)
 {
@@ -84,36 +83,4 @@ void	get_path_list(t_info **info)
 	if (!((*info)->env_list))
 		return ;
 	(*info)->path_list = ft_split(tmp->value, ':');
-}
-
-char	*get_envval(t_envlst *head, char *key)
-{
-	char		*value;
-	t_envlst	*tmp;
-
-	tmp = head;
-	while (tmp && (ft_strlen(key) != ft_strlen(tmp->key)
-			|| ft_strncmp(key, tmp->key, ft_strlen(key))))
-		tmp = tmp->next;
-	if (tmp)
-		value = ft_strdup(tmp->value);
-	else
-		value = ft_strdup("");
-	free(key);
-	return (value);
-}
-
-void	free_envlst(t_envlst *head)
-{
-	t_envlst	*tmp;
-
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp->key);
-		if (tmp->value)
-			free(tmp->value);
-		free(tmp);
-	}
 }

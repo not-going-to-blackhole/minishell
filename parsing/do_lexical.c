@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:16:02 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/22 10:58:41 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:16:10 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	print_tokens(t_token *tokens)
 			type = "SPACING";
 		else
 			type = "UNKNOWN";
-		printf("str: <%s>\ntype: %s\npointer:%p\n-------------\n", tmp->str, type, tmp);
+		printf("str: <%s>\ntype: %s\npointer:%p\n-------------\n",
+			tmp->str, type, tmp);
 		tmp = tmp->next;
 	}
 }

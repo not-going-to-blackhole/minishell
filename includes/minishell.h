@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeeunpar <yeeunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:55:31 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/21 16:00:10 by yeeunpar         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:20:44 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ int			find_env_idx(char *str, int *start, int *end);
 
 // parsing_utils
 int			is_separator(char c);
+t_cmd		*new_cmd(void);
+t_redir		*new_redir(t_token *tokens);
 
 // env
 void		check_env(t_info *info, t_token *token);
@@ -168,6 +170,7 @@ void		sighandler_default(int signum);
 void		sighandler_quit(int signum);
 void		sighandler_heredoc(int signum);
 
+// term
 void		term_print_on(t_info *info);
 void		term_print_off(t_info *info);
 

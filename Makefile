@@ -6,7 +6,7 @@
 #    By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 11:56:33 by woorikim          #+#    #+#              #
-#    Updated: 2024/01/21 17:29:30 by woorikim         ###   ########.fr        #
+#    Updated: 2024/01/22 12:12:56 by woorikim         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,18 +32,18 @@ SRC_BUILTIN = srcs/builtin/builtin_echo.c srcs/builtin/builtin_pwd.c srcs/builti
 		srcs/execution/mini_execution.c srcs/execution/another_cmd.c \
 		srcs/execution/single_cmd.c srcs/execution/apply_redirections.c
 		
-SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/do_lexical.c parsing/check_heredoc.c \
-		parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \
+SRC_PARSING = parsing/token_utils.c parsing/env_utils.c parsing/env_utils2.c parsing/do_lexical.c \
+		parsing/check_heredoc.c parsing/parsing_utils.c parsing/check_quotation.c parsing/split_quotation.c \
 		parsing/check_env.c parsing/split_env.c parsing/parse_by_delimiter.c parsing/do_syntax.c \
 		parsing/parse_cmds.c 
 
 SRC_UTILS = srcs/utils/utils.c srcs/utils/utils2.c 
 
-SRC_SIGNAL = signal/setting_signal.c \
+SRC_SETTING = setting/setting_signal.c setting/setting_term.c
 
 TEST_SRC = tmp/parsing_test.c
 
-OBJ = $(SRC:.c=.o) $(SRC_BUILTIN:.c=.o) $(SRC_PARSING:.c=.o) $(SRC_SIGNAL:.c=.o) $(TEST_SRC:.c=.o) $(SRC_UTILS:.c=.o)
+OBJ = $(SRC:.c=.o) $(SRC_BUILTIN:.c=.o) $(SRC_PARSING:.c=.o) $(SRC_SETTING:.c=.o) $(TEST_SRC:.c=.o) $(SRC_UTILS:.c=.o)
 #OBJ = $(SRC:.c=.o) $(TEST_SRC:.c=.o)
 
 all : $(NAME)

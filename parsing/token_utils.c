@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:48:07 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/21 17:44:46 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:17:53 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,9 @@ void	add_token(t_token **token, char *str, int type)
 	}
 }
 
-
 void	delete_token(t_token **head, t_token *target)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	if (!*head || !target)
 		return ;
@@ -76,7 +75,7 @@ void	delete_token(t_token **head, t_token *target)
 
 void	free_tokens(t_token *head)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	while (head)
 	{
@@ -87,4 +86,3 @@ void	free_tokens(t_token *head)
 		free(tmp);
 	}
 }
-

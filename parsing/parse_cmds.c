@@ -1,22 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_cmds.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/22 12:04:49 by woorikim          #+#    #+#             */
+/*   Updated: 2024/01/22 12:16:53 by woorikim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
-
-t_cmd	*new_cmd(void)
-{
-	t_cmd *cmd;
-
-	cmd = (t_cmd *)malloc(sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	cmd->argv = NULL;
-	cmd->redir = NULL;
-	cmd->prev = NULL;
-	cmd->next = NULL;
-	return (cmd);
-}
 
 static int	argv_len(t_token *tokens)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (tokens && tokens->type != PIPE)
@@ -51,19 +49,6 @@ static char	**argv_list(t_token *tokens)
 	return (argv);
 }
 
-t_redir	*new_redir(t_token *tokens)
-{
-	t_redir	*redir;
-
-	redir = (t_redir *)malloc(sizeof(t_redir));
-	if (!redir)
-		return (NULL);
-	redir->type = ft_strdup(tokens->str);
-	redir->file = ft_strdup(tokens->next->str);
-	redir->next = NULL;
-	return (redir);
-}
-
 static	void	redir_list(t_cmd **cmds, t_token *tokens)
 {
 	t_redir	*redir;
@@ -83,15 +68,15 @@ static	void	redir_list(t_cmd **cmds, t_token *tokens)
 
 t_cmd	*parse_cmds(t_token *tokens)
 {
-	t_cmd   *cmds;
-	t_cmd   *head;
+	t_cmd	*cmds;
+	t_cmd	*head;
 
 	cmds = new_cmd();
 	head = cmds;
-	while(tokens)
+	while (tokens)
 	{
 		if (cmds->argv == NULL && tokens->type == ARGV)
-            cmds->argv = argv_list(tokens);
+			cmds->argv = argv_list(tokens);
 		else if (tokens->type == REDIR)
 		{
 			redir_list(&cmds, tokens);

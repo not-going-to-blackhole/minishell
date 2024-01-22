@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:15:53 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:15:56 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:15:14 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	get_quotation(t_info *info, t_token *token, char *str, int loc)
 	return (loc + skip + 1);
 }
 
-
 static int	get_argv_loc(t_info *info, t_token *token, char *str, int loc)
 {
 	int		skip;
@@ -57,7 +56,6 @@ static int	get_argv_loc(t_info *info, t_token *token, char *str, int loc)
 	}
 	return (loc);
 }
-
 
 static int	get_insertion_loc(char *str)
 {

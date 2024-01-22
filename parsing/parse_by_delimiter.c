@@ -6,12 +6,11 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:14:44 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:14:46 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:16:47 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 static char	**split_delimiter(char *str, char *delimiter)
 {
@@ -58,7 +57,6 @@ static void	insert_tokens(t_token *tokens, char **res, char *delimiter)
 	tmp->next = tail;
 	free_all(res);
 }
-
 
 void	check_delimeter(t_token *tokens, char *delimiter)
 {
