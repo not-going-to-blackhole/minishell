@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:15:37 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/18 13:15:48 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/21 18:46:27 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	insert_tokens(t_token *tokens, char **res)
 		add_token(&tokens, ft_strdup(res[2]), SPACING);
 		add_token(&tokens, ft_strdup(res[3]), ARGV);
 	}
+	add_token(&tokens, ft_strdup(res[4]), WORD);
 	tmp = tokens;
 	while (tmp->next)
 		tmp = tmp->next;

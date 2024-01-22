@@ -6,7 +6,7 @@
 /*   By: woorikim <woorikim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:16:02 by woorikim          #+#    #+#             */
-/*   Updated: 2024/01/21 17:44:10 by woorikim         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:58:41 by woorikim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_token	*do_lexical(t_info *info, char *line)
 	check_env(info, tokens);
 	parse_by_delimiter(tokens);
 	delete_useless(&tokens);
+	print_tokens(tokens);
 	return (tokens);
 }

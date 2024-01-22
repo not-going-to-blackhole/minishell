@@ -45,6 +45,7 @@ void	print_cmds(t_cmd *cmds)
 	while (tmp)
 	{
 		i = 0;
+		printf("cmds----------------\n");
 		while (tmp->argv[i])
 		{
 			printf("argv[%d]: %s\n", i, tmp->argv[i]);
